@@ -1,55 +1,101 @@
 import styled from "styled-components";
 import Head from "next/head";
 
-import { listRecords } from "../lib/api";
+import constants from "../lib/constants";
+
+import { listDesigners, listLocations } from "../lib/api";
+
+import Sidebar from "../components/Sidebar";
+import Profile from "../components/Profile";
+
+const Body = styled.div`
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.92);
+`;
+
+const Layout = styled.div`
+  @media (min-width: ${constants.BREAKPOINTS.LARGE_DEVICES}) {
+    display: grid;
+    grid-template-columns: 312px 1fr;
+    height: 100vh;
+  }
+`;
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 2rem;
-`;
-
-const ProfileImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`;
-
-const Name = styled.span`
-  font-size: 1.2rem;
-  font-weight: 500;
+  padding: 1rem;
+  overflow-y: auto;
 `;
 
 function Home(props) {
-  const { records } = props;
+  const { designers, locations } = props;
+  const [selectedLocations, setSelectedLocations] = React.useState([]);
+  const filteredDesigners = designers.filter((designer) => {
+    const location = designer.fields.location[0];
+
+    if (selectedLocations.length) {
+      return selectedLocations.find((element) => element === location)
+        ? designer
+        : null;
+    }
+    return designer;
+  });
+
+  function getLocation(id) {
+    const location = locations.find((item) => item.id === id);
+    const name = location && location.fields.name;
+
+    return name || "N/A";
+  }
 
   return (
     <>
       <Head>
         <title>Bosnians Who Design</title>
       </Head>
-      <main>
-        <h1>Bosnians Who Design</h1>
-        <Grid>
-          {records.map((item) => {
-            return (
-              <div key={item.id}>
-                <Name>{item.fields.name}</Name>
-                <ProfileImage src={item.fields.profile[0].url} alt="" />
-              </div>
-            );
-          })}
-        </Grid>
-      </main>
+      <Body>
+        <Layout>
+          <Sidebar
+            locations={locations}
+            selectedLocations={selectedLocations}
+            setSelectedLocations={setSelectedLocations}
+          />
+          <Grid>
+            {filteredDesigners.map((item) => {
+              const location = getLocation(
+                item.fields.location && item.fields.location[0]
+              );
+
+              return (
+                <Profile
+                  key={item.id}
+                  url={
+                    item.fields.profile &&
+                    item.fields.profile[0] &&
+                    item.fields.profile[0].url
+                  }
+                  name={item.fields.name}
+                  location={location}
+                  website={item.fields.website}
+                  description={item.fields.description}
+                />
+              );
+            })}
+          </Grid>
+        </Layout>
+      </Body>
     </>
   );
 }
 
 export async function getStaticProps() {
-  const records = (await listRecords()) || [];
+  const designers = (await listDesigners()) || [];
+  const locations = (await listLocations()) || [];
 
   return {
-    props: { records },
+    props: { designers, locations },
   };
 }
 
