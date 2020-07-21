@@ -4,16 +4,13 @@ import { Square, CheckSquare } from "react-feather";
 import constants from "../lib/constants";
 
 import { ParagraphLarge, ParagraphMedium } from "./Typography";
+import Navigation from "./Navigation";
 
 const StyledSidebar = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1rem;
   overflow-y: auto;
-`;
-
-const Logo = styled.div`
-  margin-bottom: 1rem;
 `;
 
 const Locations = styled.div`
@@ -53,16 +50,7 @@ function Sidebar(props) {
 
   return (
     <StyledSidebar>
-      <Logo>
-        <ParagraphLarge>
-          Bosnians{" "}
-          <span role="img" aria-label="emoji">
-            🇧🇦
-          </span>{" "}
-          <br /> Who
-          <br /> Design
-        </ParagraphLarge>
-      </Logo>
+      <Navigation />
       <Locations>
         <ParagraphLarge>Locations</ParagraphLarge>
         {locations.map((item) => {
