@@ -36,10 +36,9 @@ function Nominate() {
       </Header>
       <Body>
         <iframe
-          class="airtable-embed airtable-dynamic-height"
+          className="airtable-embed airtable-dynamic-height"
           src="https://airtable.com/embed/shrRmFE90GYwkLv9j?backgroundColor=blue"
-          frameborder="0"
-          onmousewheel=""
+          frameBorder="0"
           width="100%"
         />
         <Footer>
