@@ -60,13 +60,6 @@ function Home(props) {
     return designer;
   });
 
-  function getLocation(id) {
-    const location = locations.find((item) => item.id === id);
-    const name = location && location.fields.name;
-
-    return name || "N/A";
-  }
-
   return (
     <>
       <Head>
@@ -91,10 +84,6 @@ function Home(props) {
           />
           <Grid>
             {filteredDesigners.map((item) => {
-              const location = getLocation(
-                item.fields.location && item.fields.location[0]
-              );
-
               return (
                 <Profile
                   key={item.id}
@@ -104,7 +93,7 @@ function Home(props) {
                     item.fields.profile[0].url
                   }
                   name={item.fields.name}
-                  location={location}
+                  location={item.fields.locationName}
                   website={item.fields.website}
                   description={item.fields.description}
                 />
