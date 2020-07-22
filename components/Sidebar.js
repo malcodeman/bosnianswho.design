@@ -13,7 +13,7 @@ const StyledSidebar = styled.div`
   overflow-y: auto;
 `;
 
-const Locations = styled.div`
+const Filters = styled.div`
   display: none;
   @media (min-width: ${constants.BREAKPOINTS.LARGE_DEVICES}) {
     display: initial;
@@ -21,7 +21,11 @@ const Locations = styled.div`
   }
 `;
 
-const Location = styled.div`
+const Filter = styled.div`
+  margin-bottom: 1rem;
+`;
+
+const FilterItem = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -37,7 +41,14 @@ const Location = styled.div`
 `;
 
 function Sidebar(props) {
-  const { locations, selectedLocations, setSelectedLocations } = props;
+  const {
+    locations,
+    selectedLocations,
+    setSelectedLocations,
+    positions,
+    selectedPositions,
+    setSelectedPositions,
+  } = props;
 
   function handleLocation(selected, id) {
     if (selected) {
@@ -48,26 +59,54 @@ function Sidebar(props) {
     return setSelectedLocations([...selectedLocations, id]);
   }
 
+  function handlePosition(selected, id) {
+    if (selected) {
+      return setSelectedPositions(
+        selectedPositions.filter((element) => element !== id)
+      );
+    }
+    return setSelectedPositions([...selectedPositions, id]);
+  }
+
   return (
     <StyledSidebar>
       <Navigation />
-      <Locations>
-        <ParagraphLarge>Locations</ParagraphLarge>
-        {locations.map((item) => {
-          const selected =
-            selectedLocations.find((element) => element === item.id) || false;
+      <Filters>
+        <Filter>
+          <ParagraphLarge>Locations</ParagraphLarge>
+          {locations.map((item) => {
+            const selected =
+              selectedLocations.find((element) => element === item.id) || false;
 
-          return (
-            <Location
-              key={item.id}
-              onClick={() => handleLocation(selected, item.id)}
-            >
-              {selected ? <CheckSquare size={16} /> : <Square size={16} />}
-              <ParagraphMedium>{item.fields.name}</ParagraphMedium>
-            </Location>
-          );
-        })}
-      </Locations>
+            return (
+              <FilterItem
+                key={item.id}
+                onClick={() => handleLocation(selected, item.id)}
+              >
+                {selected ? <CheckSquare size={16} /> : <Square size={16} />}
+                <ParagraphMedium>{item.fields.name}</ParagraphMedium>
+              </FilterItem>
+            );
+          })}
+        </Filter>
+        <Filter>
+          <ParagraphLarge>Positions</ParagraphLarge>
+          {positions.map((item) => {
+            const selected =
+              selectedPositions.find((element) => element === item.id) || false;
+
+            return (
+              <FilterItem
+                key={item.id}
+                onClick={() => handlePosition(selected, item.id)}
+              >
+                {selected ? <CheckSquare size={16} /> : <Square size={16} />}
+                <ParagraphMedium>{item.fields.name}</ParagraphMedium>
+              </FilterItem>
+            );
+          })}
+        </Filter>
+      </Filters>
     </StyledSidebar>
   );
 }

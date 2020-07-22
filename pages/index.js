@@ -3,7 +3,7 @@ import Head from "next/head";
 
 import constants from "../lib/constants";
 
-import { listDesigners, listLocations } from "../lib/api";
+import { listDesigners, listLocations, listPositions } from "../lib/api";
 
 import Sidebar from "../components/Sidebar";
 import Profile from "../components/Profile";
@@ -30,13 +30,30 @@ const Grid = styled.div`
 `;
 
 function Home(props) {
-  const { designers, locations } = props;
+  const { designers, locations, positions } = props;
   const [selectedLocations, setSelectedLocations] = React.useState([]);
+  const [selectedPositions, setSelectedPositions] = React.useState([]);
   const filteredDesigners = designers.filter((designer) => {
     const location = designer.fields.location[0];
+    const position = designer.fields.position;
 
+    if (selectedLocations.length && selectedPositions.length) {
+      return selectedLocations.find((element) => element === location) &&
+        selectedPositions.some(
+          (element) => position && position.includes(element)
+        )
+        ? designer
+        : null;
+    }
     if (selectedLocations.length) {
       return selectedLocations.find((element) => element === location)
+        ? designer
+        : null;
+    }
+    if (selectedPositions.length) {
+      return selectedPositions.some(
+        (element) => position && position.includes(element)
+      )
         ? designer
         : null;
     }
@@ -68,6 +85,9 @@ function Home(props) {
             locations={locations}
             selectedLocations={selectedLocations}
             setSelectedLocations={setSelectedLocations}
+            positions={positions}
+            selectedPositions={selectedPositions}
+            setSelectedPositions={setSelectedPositions}
           />
           <Grid>
             {filteredDesigners.map((item) => {
@@ -100,9 +120,10 @@ function Home(props) {
 export async function getStaticProps() {
   const designers = (await listDesigners()) || [];
   const locations = (await listLocations()) || [];
+  const positions = (await listPositions()) || [];
 
   return {
-    props: { designers, locations },
+    props: { designers, locations, positions },
   };
 }
 
