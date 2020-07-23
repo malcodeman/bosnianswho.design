@@ -70,7 +70,7 @@ function Profile(props) {
   return (
     <StyledProfile>
       <ImageWrapper>
-        <ProfileImage src={url} alt={name} />
+        <ProfileImage src={url} alt="" loading="lazy" />
       </ImageWrapper>
       <Name>{name}</Name>
       <Location>
