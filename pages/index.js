@@ -161,14 +161,18 @@ function Home(props) {
           />
           <Grid>
             {filteredDesigners.map((item) => {
+              const profile =
+                (item.fields.profileCompressed &&
+                  item.fields.profileCompressed[0] &&
+                  item.fields.profileCompressed[0].url) ||
+                (item.fields.profile &&
+                  item.fields.profile[0] &&
+                  item.fields.profile[0].url);
+
               return (
                 <Profile
                   key={item.id}
-                  url={
-                    item.fields.profile &&
-                    item.fields.profile[0] &&
-                    item.fields.profile[0].url
-                  }
+                  url={profile}
                   name={item.fields.name}
                   location={item.fields.locationName}
                   website={item.fields.website}

@@ -5,7 +5,7 @@ import constants from "../lib/constants";
 export default class MyDocument extends Document {
   render() {
     return (
-      <html>
+      <html lang="en">
         <Head>
           <script
             async
