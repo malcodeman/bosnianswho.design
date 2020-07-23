@@ -48,10 +48,14 @@ const Filter = styled.div`
   margin-bottom: 1rem;
 `;
 
+const GroupButton = styled(Button)``;
+
 const Group = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  ${GroupButton} {
+    margin: 0 0.5rem 0.5rem 0;
+  }
 `;
 
 const Footer = styled.footer`
@@ -130,7 +134,7 @@ function FilterModal(props) {
                   false;
 
                 return (
-                  <Button
+                  <GroupButton
                     id={item.id}
                     kind={KIND.secondary}
                     size={SIZE.compact}
@@ -139,7 +143,7 @@ function FilterModal(props) {
                     onClick={() => handleLocation(isSelected, item.id)}
                   >
                     {item.fields.name}
-                  </Button>
+                  </GroupButton>
                 );
               })}
             </Group>
@@ -153,7 +157,7 @@ function FilterModal(props) {
                   false;
 
                 return (
-                  <Button
+                  <GroupButton
                     id={item.id}
                     kind={KIND.secondary}
                     size={SIZE.compact}
@@ -162,7 +166,7 @@ function FilterModal(props) {
                     onClick={() => handlePosition(isSelected, item.id)}
                   >
                     {item.fields.name}
-                  </Button>
+                  </GroupButton>
                 );
               })}
             </Group>
@@ -176,7 +180,7 @@ function FilterModal(props) {
                   false;
 
                 return (
-                  <Button
+                  <GroupButton
                     id={item.id}
                     kind={KIND.secondary}
                     size={SIZE.compact}
@@ -185,7 +189,7 @@ function FilterModal(props) {
                     onClick={() => handleCompany(isSelected, item.id)}
                   >
                     {item.fields.name}
-                  </Button>
+                  </GroupButton>
                 );
               })}
             </Group>
