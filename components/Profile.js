@@ -5,11 +5,16 @@ import { ParagraphLarge, ParagraphSmall, ParagraphXSmall } from "./Typography";
 
 const StyledProfile = styled.div``;
 
+const ImageWrapper = styled.div`
+  padding-bottom: 100%;
+  position: relative;
+`;
+
 const ProfileImage = styled.img`
-  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  position: absolute;
 `;
 
 const Name = styled(ParagraphLarge)`
@@ -39,9 +44,9 @@ function Profile(props) {
 
   return (
     <StyledProfile>
-      <div>
+      <ImageWrapper>
         <ProfileImage src={url} alt={name} />
-      </div>
+      </ImageWrapper>
       <Name>{name}</Name>
       <Location>
         <MapPin size={16} />
