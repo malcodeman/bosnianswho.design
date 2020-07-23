@@ -54,7 +54,7 @@ const Grid = styled.div`
 
 function Home(props) {
   const { designers, locations, positions, companies } = props;
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(false);
   const [selectedLocations, setSelectedLocations] = React.useState([]);
   const [selectedPositions, setSelectedPositions] = React.useState([]);
   const [selectedCompanies, setSelectedCompanies] = React.useState([]);
