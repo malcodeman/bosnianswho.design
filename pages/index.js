@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Head from "next/head";
+import { Filter } from "react-feather";
 
 import constants from "../lib/constants";
 
@@ -12,10 +13,27 @@ import {
 
 import Sidebar from "../components/Sidebar";
 import Profile from "../components/Profile";
+import { Button } from "../components/button";
+import FilterModal from "../components/FilterModal";
 
 const Body = styled.div`
   min-height: 100vh;
   background-color: ${(props) => props.theme.colors.background};
+`;
+
+const FilterButton = styled(Button)`
+  display: flex;
+  align-items: center;
+  position: fixed;
+  left: 50%;
+  bottom: 64px;
+  transform: translateX(-50%);
+  svg {
+    margin-right: 0.5rem;
+  }
+  @media (min-width: ${constants.BREAKPOINTS.LARGE_DEVICES}) {
+    display: none;
+  }
 `;
 
 const Layout = styled.div`
@@ -36,6 +54,7 @@ const Grid = styled.div`
 
 function Home(props) {
   const { designers, locations, positions, companies } = props;
+  const [isOpen, setIsOpen] = React.useState(true);
   const [selectedLocations, setSelectedLocations] = React.useState([]);
   const [selectedPositions, setSelectedPositions] = React.useState([]);
   const [selectedCompanies, setSelectedCompanies] = React.useState([]);
@@ -97,6 +116,10 @@ function Home(props) {
     return designer;
   });
 
+  function onClose() {
+    setIsOpen(false);
+  }
+
   return (
     <>
       <Head>
@@ -141,6 +164,24 @@ function Home(props) {
             })}
           </Grid>
         </Layout>
+        <FilterButton onClick={() => setIsOpen(true)}>
+          <Filter size={16} />
+          Filter
+        </FilterButton>
+        <FilterModal
+          isOpen={isOpen}
+          onClose={onClose}
+          count={filteredDesigners.length}
+          locations={locations}
+          selectedLocations={selectedLocations}
+          setSelectedLocations={setSelectedLocations}
+          positions={positions}
+          selectedPositions={selectedPositions}
+          setSelectedPositions={setSelectedPositions}
+          companies={companies}
+          selectedCompanies={selectedCompanies}
+          setSelectedCompanies={setSelectedCompanies}
+        />
       </Body>
     </>
   );

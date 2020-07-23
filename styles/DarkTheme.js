@@ -15,6 +15,16 @@ const dark = {
     negative: "#D44333",
     warning: "#C19132",
     positive: "#3AA76D",
+    buttonPrimaryFill: "#FFFFFF",
+    buttonPrimarySelectedFill: "#E2E2E2",
+    buttonPrimaryText: "#000000",
+    buttonPrimarySelectedText: "#000000",
+    buttonSecondaryFill: "#333333",
+    buttonSecondarySelectedFill: "#757575",
+    buttonSecondaryText: "#FFFFFF",
+    buttonSecondarySelectedText: "#FFFFFF",
+    buttonDisabledFill: "#292929",
+    buttonDisabledText: "#757575",
   },
 };
 
