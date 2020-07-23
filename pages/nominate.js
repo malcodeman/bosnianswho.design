@@ -17,6 +17,7 @@ const Header = styled.header`
 `;
 
 const Footer = styled.footer`
+  padding: 1rem;
   text-align: center;
   ${ParagraphSmall} {
     text-transform: uppercase;

@@ -8,7 +8,9 @@ const Logo = styled.div`
 `;
 
 const Links = styled.nav`
+  display: flex;
   ${ParagraphSmall} {
+    margin-right: 0.5rem;
     text-transform: uppercase;
   }
 `;
@@ -31,6 +33,11 @@ function Navigation() {
         </Link>
       </Logo>
       <Links>
+        <Link href="/about">
+          <a>
+            <ParagraphSmall>About</ParagraphSmall>
+          </a>
+        </Link>
         <Link href="/nominate">
           <a>
             <ParagraphSmall>Nominate</ParagraphSmall>
