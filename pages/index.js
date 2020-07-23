@@ -46,10 +46,20 @@ const Layout = styled.div`
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 2rem;
   padding: 1rem;
   overflow-y: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  @media (min-width: ${constants.BREAKPOINTS.SMALL_DEVICES}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: ${constants.BREAKPOINTS.MEDIUM_DEVICES}) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (min-width: ${constants.BREAKPOINTS.LARGE_DEVICES}) {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
 `;
 
 function Home(props) {

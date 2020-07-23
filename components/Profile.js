@@ -1,13 +1,27 @@
 import styled from "styled-components";
 import { MapPin, Link } from "react-feather";
 
+import constants from "../lib/constants";
+
 import { ParagraphLarge, ParagraphSmall, ParagraphXSmall } from "./Typography";
 
-const StyledProfile = styled.div``;
+const StyledProfile = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 0 1rem;
+  @media (min-width: ${constants.BREAKPOINTS.LARGE_DEVICES}) {
+    display: initial;
+    grid-template-columns: initial;
+    grid-gap: initial;
+  }
+`;
 
 const ImageWrapper = styled.div`
   padding-bottom: 100%;
   position: relative;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  margin-bottom: 1rem;
 `;
 
 const ProfileImage = styled.img`
@@ -18,10 +32,15 @@ const ProfileImage = styled.img`
 `;
 
 const Name = styled(ParagraphLarge)`
+  grid-column: 2/5;
+  grid-row: 1/2;
+  align-self: center;
+  margin-bottom: 0.5rem;
   color: ${(props) => props.theme.colors.accent};
 `;
 
 const Location = styled.div`
+  grid-column: 1/5;
   display: flex;
   margin-bottom: 0.5rem;
   svg {
@@ -31,12 +50,18 @@ const Location = styled.div`
 `;
 
 const Website = styled.div`
+  grid-column: 1/5;
+  word-break: break-all;
   display: flex;
   margin-bottom: 0.5rem;
   svg {
     color: ${(props) => props.theme.colors.accent};
     margin-right: 0.5rem;
   }
+`;
+
+const Description = styled(ParagraphSmall)`
+  grid-column: 1/5;
 `;
 
 function Profile(props) {
@@ -62,7 +87,7 @@ function Profile(props) {
           <ParagraphXSmall>N/A</ParagraphXSmall>
         )}
       </Website>
-      <ParagraphSmall>{description}</ParagraphSmall>
+      <Description>{description}</Description>
     </StyledProfile>
   );
 }
