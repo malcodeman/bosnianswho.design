@@ -140,6 +140,10 @@ function Home(props) {
           name="og:description"
           content="Directory of Bosnians in IT industry."
         />
+        <meta
+          name="description"
+          content="Directory of Bosnians in IT industry."
+        />
         <meta property="og:image" content="opengraph.png"></meta>
       </Head>
       <Body>
