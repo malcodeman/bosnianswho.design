@@ -3,14 +3,19 @@ import Head from "next/head";
 
 import constants from "../lib/constants";
 
-import { listDesigners, listLocations, listPositions } from "../lib/api";
+import {
+  listDesigners,
+  listLocations,
+  listPositions,
+  listCompanies,
+} from "../lib/api";
 
 import Sidebar from "../components/Sidebar";
 import Profile from "../components/Profile";
 
 const Body = styled.div`
   min-height: 100vh;
-  background-color: rgba(0, 0, 0, 0.92);
+  background-color: ${(props) => props.theme.colors.background};
 `;
 
 const Layout = styled.div`
@@ -30,14 +35,41 @@ const Grid = styled.div`
 `;
 
 function Home(props) {
-  const { designers, locations, positions } = props;
+  const { designers, locations, positions, companies } = props;
   const [selectedLocations, setSelectedLocations] = React.useState([]);
   const [selectedPositions, setSelectedPositions] = React.useState([]);
+  const [selectedCompanies, setSelectedCompanies] = React.useState([]);
   const filteredDesigners = designers.filter((designer) => {
-    const location = designer.fields.location[0];
+    const location = designer.fields.location && designer.fields.location[0];
     const position = designer.fields.position;
+    const company = designer.fields.company && designer.fields.company[0];
+    const filterByLocation = selectedLocations.length;
+    const filterByPosition = selectedPositions.length;
+    const filterByCompany = selectedCompanies.length;
 
-    if (selectedLocations.length && selectedPositions.length) {
+    if (filterByLocation && filterByPosition && filterByCompany) {
+      return selectedLocations.find((element) => element === location) &&
+        selectedPositions.some(
+          (element) => position && position.includes(element)
+        ) &&
+        selectedCompanies.find((element) => element === company)
+        ? designer
+        : null;
+    }
+    if (filterByLocation && filterByCompany) {
+      return selectedLocations.find((element) => element === location) &&
+        selectedCompanies.find((element) => element === company)
+        ? designer
+        : null;
+    }
+    if (filterByPosition && filterByCompany) {
+      return selectedPositions.some(
+        (element) => position && position.includes(element)
+      ) && selectedCompanies.find((element) => element === company)
+        ? designer
+        : null;
+    }
+    if (filterByLocation && filterByPosition) {
       return selectedLocations.find((element) => element === location) &&
         selectedPositions.some(
           (element) => position && position.includes(element)
@@ -45,15 +77,20 @@ function Home(props) {
         ? designer
         : null;
     }
-    if (selectedLocations.length) {
+    if (filterByLocation) {
       return selectedLocations.find((element) => element === location)
         ? designer
         : null;
     }
-    if (selectedPositions.length) {
+    if (filterByPosition) {
       return selectedPositions.some(
         (element) => position && position.includes(element)
       )
+        ? designer
+        : null;
+    }
+    if (filterByCompany) {
+      return selectedCompanies.find((element) => element === company)
         ? designer
         : null;
     }
@@ -81,6 +118,9 @@ function Home(props) {
             positions={positions}
             selectedPositions={selectedPositions}
             setSelectedPositions={setSelectedPositions}
+            companies={companies}
+            selectedCompanies={selectedCompanies}
+            setSelectedCompanies={setSelectedCompanies}
           />
           <Grid>
             {filteredDesigners.map((item) => {
@@ -110,9 +150,10 @@ export async function getStaticProps() {
   const designers = (await listDesigners()) || [];
   const locations = (await listLocations()) || [];
   const positions = (await listPositions()) || [];
+  const companies = (await listCompanies()) || [];
 
   return {
-    props: { designers, locations, positions },
+    props: { designers, locations, positions, companies },
   };
 }
 

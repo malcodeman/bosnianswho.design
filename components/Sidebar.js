@@ -25,12 +25,15 @@ const Filter = styled.div`
   margin-bottom: 1rem;
 `;
 
+const Name = styled(ParagraphMedium)``;
+
 const FilterItem = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   cursor: pointer;
   &:hover {
-    ${ParagraphMedium} {
+    ${Name} {
       text-decoration: underline;
     }
   }
@@ -38,6 +41,15 @@ const FilterItem = styled.div`
     margin-right: 0.5rem;
     color: ${(props) => props.theme.colors.contentPrimary};
   }
+`;
+
+const Checkbox = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Count = styled(ParagraphMedium)`
+  color: ${(props) => props.theme.colors.contentSecondary};
 `;
 
 function Sidebar(props) {
@@ -48,6 +60,9 @@ function Sidebar(props) {
     positions,
     selectedPositions,
     setSelectedPositions,
+    companies,
+    selectedCompanies,
+    setSelectedCompanies,
   } = props;
 
   function handleLocation(selected, id) {
@@ -68,6 +83,15 @@ function Sidebar(props) {
     return setSelectedPositions([...selectedPositions, id]);
   }
 
+  function handleCompany(selected, id) {
+    if (selected) {
+      return setSelectedCompanies(
+        selectedCompanies.filter((element) => element !== id)
+      );
+    }
+    return setSelectedCompanies([...selectedCompanies, id]);
+  }
+
   return (
     <StyledSidebar>
       <Navigation />
@@ -83,8 +107,11 @@ function Sidebar(props) {
                 key={item.id}
                 onClick={() => handleLocation(selected, item.id)}
               >
-                {selected ? <CheckSquare size={16} /> : <Square size={16} />}
-                <ParagraphMedium>{item.fields.name}</ParagraphMedium>
+                <Checkbox>
+                  {selected ? <CheckSquare size={16} /> : <Square size={16} />}
+                  <Name>{item.fields.name}</Name>
+                </Checkbox>
+                <Count>{item.fields.count}</Count>
               </FilterItem>
             );
           })}
@@ -100,8 +127,31 @@ function Sidebar(props) {
                 key={item.id}
                 onClick={() => handlePosition(selected, item.id)}
               >
-                {selected ? <CheckSquare size={16} /> : <Square size={16} />}
-                <ParagraphMedium>{item.fields.name}</ParagraphMedium>
+                <Checkbox>
+                  {selected ? <CheckSquare size={16} /> : <Square size={16} />}
+                  <Name>{item.fields.name}</Name>
+                </Checkbox>
+                <Count>{item.fields.count}</Count>
+              </FilterItem>
+            );
+          })}
+        </Filter>
+        <Filter>
+          <ParagraphLarge>Companies</ParagraphLarge>
+          {companies.map((item) => {
+            const selected =
+              selectedCompanies.find((element) => element === item.id) || false;
+
+            return (
+              <FilterItem
+                key={item.id}
+                onClick={() => handleCompany(selected, item.id)}
+              >
+                <Checkbox>
+                  {selected ? <CheckSquare size={16} /> : <Square size={16} />}
+                  <Name>{item.fields.name}</Name>
+                </Checkbox>
+                <Count>{item.fields.count}</Count>
               </FilterItem>
             );
           })}

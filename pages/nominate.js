@@ -9,6 +9,7 @@ import Navigation from "../components/Navigation";
 
 const Body = styled.div`
   min-height: 100vh;
+  background-color: ${(props) => props.theme.colors.background};
 `;
 
 const Header = styled.header`
@@ -31,10 +32,10 @@ function Nominate() {
           src="https://static.airtable.com/js/embed/embed_snippet_v1.js"
         />
       </Head>
-      <Header>
-        <Navigation />
-      </Header>
       <Body>
+        <Header>
+          <Navigation />
+        </Header>
         <iframe
           className="airtable-embed airtable-dynamic-height"
           src="https://airtable.com/embed/shrRmFE90GYwkLv9j?backgroundColor=blue"

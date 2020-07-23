@@ -4,7 +4,7 @@ const light = {
   typography,
   colors: {
     primary: "#000000",
-    accent: "#ED202E",
+    accent: "#f7cd46",
     background: "#FFFFFF",
     backgroundPrimary: "#FFFFFF",
     backgroundSecondary: "#F6F6F6",
