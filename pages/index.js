@@ -162,12 +162,8 @@ function Home(props) {
           <Grid>
             {filteredDesigners.map((item) => {
               const profile =
-                (item.fields.profileCompressed &&
-                  item.fields.profileCompressed[0] &&
-                  item.fields.profileCompressed[0].url) ||
-                (item.fields.profile &&
-                  item.fields.profile[0] &&
-                  item.fields.profile[0].url);
+                item.fields.profile &&
+                item.fields.profile[0].thumbnails.large.url;
 
               return (
                 <Profile
