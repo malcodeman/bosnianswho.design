@@ -16,13 +16,14 @@ const StyledSidebar = styled.div`
 const Filters = styled.div`
   display: none;
   @media (min-width: ${constants.BREAKPOINTS.LARGE_DEVICES}) {
-    display: initial;
+    display: flex;
+    flex-direction: column;
     margin: auto 0;
   }
 `;
 
 const Filter = styled.div`
-  margin-bottom: 1rem;
+  margin: 1rem 0;
 `;
 
 const Name = styled(ParagraphMedium)``;
