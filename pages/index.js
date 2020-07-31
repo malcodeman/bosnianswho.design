@@ -163,12 +163,13 @@ function Home(props) {
             {filteredDesigners.map((item) => {
               const profile =
                 item.fields.profile &&
-                item.fields.profile[0].thumbnails.large.url;
+                item.fields.profile[0] &&
+                item.fields.profile[0].thumbnails;
 
               return (
                 <Profile
                   key={item.id}
-                  url={profile}
+                  profile={profile}
                   name={item.fields.name}
                   location={item.fields.locationName}
                   website={item.fields.website}

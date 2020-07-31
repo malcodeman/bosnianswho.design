@@ -65,12 +65,23 @@ const Description = styled(ParagraphSmall)`
 `;
 
 function Profile(props) {
-  const { url, name, location, website, description } = props;
+  const { profile, name, location, website, description } = props;
 
   return (
     <StyledProfile>
       <ImageWrapper>
-        <ProfileImage src={url} alt="" loading="lazy" />
+        <picture>
+          <source
+            media={`(min-width: ${constants.BREAKPOINTS.EXTRA_LARGE_DEVICES})`}
+            srcSet={profile.full.url}
+          />
+          <source
+            media={`(min-width: ${constants.BREAKPOINTS.LARGE_DEVICES})`}
+            srcSet={profile.large.url}
+          />
+          <source src={profile.small.url} />
+          <ProfileImage src={profile.small.url} alt="" loading="lazy" />
+        </picture>
       </ImageWrapper>
       <Name>{name}</Name>
       <Location>
