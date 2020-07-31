@@ -44,7 +44,7 @@ const Layout = styled.div`
   }
 `;
 
-const Grid = styled.div`
+const Grid = styled.main`
   display: grid;
   grid-gap: 2rem;
   padding: 1rem;

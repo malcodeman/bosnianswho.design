@@ -21,7 +21,7 @@ function Navigation() {
       <Logo>
         <Link href="/">
           <a>
-            <ParagraphLarge>
+            <ParagraphLarge as="h1">
               Bosnians{" "}
               <span role="img" aria-label="emoji">
                 🇧🇦
