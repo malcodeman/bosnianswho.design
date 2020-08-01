@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import Link from "next/link";
 
+import constants from "../lib/constants";
+
 import { ParagraphLarge, ParagraphSmall } from "./Typography";
 
 const Logo = styled.div`
@@ -34,15 +36,11 @@ function Navigation() {
       </Logo>
       <Links>
         <Link href="/about">
-          <a>
-            <ParagraphSmall>About</ParagraphSmall>
-          </a>
+          <ParagraphSmall>About</ParagraphSmall>
         </Link>
-        <Link href="/nominate">
-          <a>
-            <ParagraphSmall>Nominate</ParagraphSmall>
-          </a>
-        </Link>
+        <a href={constants.SHAREABLE_FORM_LINK} target="_blank" rel="noopener">
+          <ParagraphSmall>Join us</ParagraphSmall>
+        </a>
       </Links>
     </>
   );
