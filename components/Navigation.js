@@ -36,7 +36,9 @@ function Navigation() {
       </Logo>
       <Links>
         <Link href="/about">
-          <ParagraphSmall>About</ParagraphSmall>
+          <a>
+            <ParagraphSmall>About</ParagraphSmall>
+          </a>
         </Link>
         <a href={constants.SHAREABLE_FORM_LINK} target="_blank" rel="noopener">
           <ParagraphSmall>Join us</ParagraphSmall>
