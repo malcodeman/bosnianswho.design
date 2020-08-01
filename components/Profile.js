@@ -72,15 +72,11 @@ function Profile(props) {
       <ImageWrapper>
         <picture>
           <source
-            media={`(min-width: ${constants.BREAKPOINTS.EXTRA_LARGE_DEVICES})`}
+            media={`(min-width: ${constants.BREAKPOINTS.LARGE_DEVICES})`}
             srcSet={profile.full.url}
           />
-          <source
-            media={`(min-width: ${constants.BREAKPOINTS.LARGE_DEVICES})`}
-            srcSet={profile.large.url}
-          />
-          <source src={profile.small.url} />
-          <ProfileImage src={profile.small.url} alt="" loading="lazy" />
+          <source src={profile.large.url} />
+          <ProfileImage src={profile.large.url} alt="" loading="lazy" />
         </picture>
       </ImageWrapper>
       <Name>{name}</Name>
