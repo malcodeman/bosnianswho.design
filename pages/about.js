@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import Link from "next/link";
 
+import constants from "../lib/constants";
+
 import {
   ParagraphSmall,
   HeadingLarge,
@@ -117,7 +119,11 @@ function About() {
               >
                 @bosniansdesign
               </StyledLink>{" "}
-              on Twitter and you will be removed.
+              on Twitter or email at{" "}
+              <StyledLink href={`mailto:${constants.EMAIL}`}>
+                {constants.EMAIL}
+              </StyledLink>{" "}
+              and you will be removed.
             </ParagraphLarge>
           </Section>
         </Content>
