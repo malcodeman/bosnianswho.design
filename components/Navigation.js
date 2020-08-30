@@ -40,8 +40,11 @@ function Navigation() {
             <ParagraphSmall>About</ParagraphSmall>
           </a>
         </Link>
-        <a href={constants.SHAREABLE_FORM_LINK} target="_blank" rel="noopener">
+        <a href={constants.DESIGNER_FORM_LINK} target="_blank" rel="noopener">
           <ParagraphSmall>Join us</ParagraphSmall>
+        </a>
+        <a href={constants.COMPANY_FORM_LINK} target="_blank" rel="noopener">
+          <ParagraphSmall>Add a company</ParagraphSmall>
         </a>
       </Links>
     </>
