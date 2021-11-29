@@ -3,6 +3,7 @@ import Document, {
   Main,
   NextScript,
   DocumentContext,
+  Head,
 } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 
@@ -37,6 +38,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
+        <Head />
         <body>
           <Main />
           <NextScript />
