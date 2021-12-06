@@ -1,9 +1,9 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
 import { load } from "fathom-client";
+import { ChakraProvider } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
 
-import GlobalStyle from "../styles/GlobalStyle";
 import DarkTheme from "../styles/DarkTheme";
 
 const FATHOM_SITE_ID = "TIILVVCO";
@@ -16,12 +16,11 @@ function App({ Component, pageProps }: AppProps) {
     });
   }, []);
   return (
-    <>
-      <ThemeProvider theme={DarkTheme}>
+    <ThemeProvider theme={DarkTheme}>
+      <ChakraProvider>
         <Component {...pageProps} />
-      </ThemeProvider>
-      <GlobalStyle />
-    </>
+      </ChakraProvider>
+    </ThemeProvider>
   );
 }
 
