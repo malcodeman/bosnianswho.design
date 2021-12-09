@@ -36,16 +36,4 @@ async function listPositions() {
   return json.records;
 }
 
-async function listCompanies() {
-  const res = await fetch(
-    `https://api.airtable.com/v0/${constants.AIRTABLE_BASE}/companies`,
-    {
-      headers: { Authorization: `Bearer ${constants.AIRTABLE_API_KEY}` },
-    }
-  );
-  const json = await res.json();
-
-  return json.records;
-}
-
-export { listDesigners, listLocations, listPositions, listCompanies };
+export { listDesigners, listLocations, listPositions };

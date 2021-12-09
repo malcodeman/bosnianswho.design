@@ -11,7 +11,7 @@ import constants from "../lib/constants";
 
 function Navigation() {
   return (
-    <>
+    <Box>
       <Box mb="1">
         <Link href="/">
           <a>
@@ -35,17 +35,16 @@ function Navigation() {
           </Link>
         </WrapItem>
         <WrapItem>
-          <ChakraLink href={constants.DESIGNER_FORM_LINK} isExternal>
+          <ChakraLink
+            href={constants.DESIGNER_FORM_LINK}
+            color="blue.400"
+            isExternal
+          >
             Join us
           </ChakraLink>
         </WrapItem>
-        <WrapItem>
-          <ChakraLink href={constants.COMPANY_FORM_LINK} isExternal>
-            Add a company
-          </ChakraLink>
-        </WrapItem>
       </Wrap>
-    </>
+    </Box>
   );
 }
 
