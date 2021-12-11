@@ -3,59 +3,30 @@ import Head from "next/head";
 import { Grid, SimpleGrid } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/button";
 import { useDisclosure } from "@chakra-ui/hooks";
-
+import { map, replace, zipWith } from "ramda";
 import { Filter } from "react-feather";
 
-import { listDesigners, listLocations, listPositions } from "../lib/api";
+import { listDesigners, listTwitterDesigners, listPositions } from "../lib/api";
 
 import Sidebar from "../components/Sidebar";
 import Profile from "../components/Profile";
 import FilterModal from "../components/FilterModal";
 
-function Home(props) {
-  const { designers, locations, positions } = props;
+import { Designer, NotionPosition } from "../types";
+
+type props = {
+  designers: Designer[];
+  positions: NotionPosition[];
+};
+
+function Home(props: props) {
+  const { designers, positions } = props;
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [selectedLocations, setSelectedLocations] = React.useState([]);
   const [selectedPositions, setSelectedPositions] = React.useState([]);
   const filteredDesigners = designers.filter((designer) => {
-    const location = designer.fields.location && designer.fields.location[0];
-    const position = designer.fields.position;
-    const filterByLocation = selectedLocations.length;
+    const position = designer.position;
     const filterByPosition = selectedPositions.length;
 
-    if (filterByLocation && filterByPosition) {
-      return selectedLocations.find((element) => element === location) &&
-        selectedPositions.some(
-          (element) => position && position.includes(element)
-        )
-        ? designer
-        : null;
-    }
-    if (filterByLocation) {
-      return selectedLocations.find((element) => element === location)
-        ? designer
-        : null;
-    }
-    if (filterByPosition) {
-      return selectedPositions.some(
-        (element) => position && position.includes(element)
-      )
-        ? designer
-        : null;
-    }
-    if (filterByLocation && filterByPosition) {
-      return selectedLocations.find((element) => element === location) &&
-        selectedPositions.some(
-          (element) => position && position.includes(element)
-        )
-        ? designer
-        : null;
-    }
-    if (filterByLocation) {
-      return selectedLocations.find((element) => element === location)
-        ? designer
-        : null;
-    }
     if (filterByPosition) {
       return selectedPositions.some(
         (element) => position && position.includes(element)
@@ -73,9 +44,6 @@ function Home(props) {
       </Head>
       <Grid gridTemplateColumns={["1fr", "1fr", "312px 1fr"]}>
         <Sidebar
-          locations={locations}
-          selectedLocations={selectedLocations}
-          setSelectedLocations={setSelectedLocations}
           positions={positions}
           selectedPositions={selectedPositions}
           setSelectedPositions={setSelectedPositions}
@@ -88,19 +56,15 @@ function Home(props) {
           padding="4"
         >
           {filteredDesigners.map((item) => {
-            const profile =
-              item.fields.profile &&
-              item.fields.profile[0] &&
-              item.fields.profile[0].thumbnails;
-
+            const profile = replace("_normal", "", item.profile_image_url);
             return (
               <Profile
                 key={item.id}
                 profile={profile}
-                name={item.fields.name}
-                location={item.fields.locationName}
-                website={item.fields.website}
-                description={item.fields.description}
+                name={item.name}
+                location={item.location}
+                website={item.url}
+                description={item.description}
               />
             );
           })}
@@ -121,9 +85,6 @@ function Home(props) {
         isOpen={isOpen}
         onClose={onClose}
         count={filteredDesigners.length}
-        locations={locations}
-        selectedLocations={selectedLocations}
-        setSelectedLocations={setSelectedLocations}
         positions={positions}
         selectedPositions={selectedPositions}
         setSelectedPositions={setSelectedPositions}
@@ -133,11 +94,22 @@ function Home(props) {
 }
 
 export async function getStaticProps() {
-  const designers = (await listDesigners()) || [];
-  const locations = (await listLocations()) || [];
-  const positions = (await listPositions()) || [];
+  const notionDesigners = await listDesigners();
+  const usernames = map((item) => item.username, notionDesigners);
+  const twitterDesigners = await listTwitterDesigners(usernames);
+  const positions = await listPositions();
+  const designers = zipWith(
+    (a, b) => {
+      return {
+        ...a,
+        position: b.position,
+      };
+    },
+    twitterDesigners,
+    notionDesigners
+  );
   return {
-    props: { designers, locations, positions },
+    props: { designers, positions },
   };
 }
 

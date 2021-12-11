@@ -7,27 +7,16 @@ import {
   ModalFooter,
 } from "@chakra-ui/modal";
 import { Button, ButtonGroup, IconButton } from "@chakra-ui/button";
-import { Box, Text, Wrap, Flex } from "@chakra-ui/layout";
+import { Text, Wrap, Flex } from "@chakra-ui/layout";
 import { X } from "react-feather";
+
+import { NotionPosition } from "../types";
 
 type props = {
   isOpen: boolean;
   onClose: () => void;
   count: number;
-  locations: {
-    id: string;
-    fields: {
-      name: string;
-    };
-  }[];
-  selectedLocations: string[];
-  setSelectedLocations: (locations: string[]) => void;
-  positions: {
-    id: string;
-    fields: {
-      name: string;
-    };
-  }[];
+  positions: NotionPosition[];
   selectedPositions: string[];
   setSelectedPositions: (positions: string[]) => void;
 };
@@ -37,22 +26,10 @@ function FilterModal(props: props) {
     isOpen,
     onClose,
     count,
-    locations,
-    selectedLocations,
-    setSelectedLocations,
     positions,
     selectedPositions,
     setSelectedPositions,
   } = props;
-
-  function handleLocation(selected, id) {
-    if (selected) {
-      return setSelectedLocations(
-        selectedLocations.filter((element) => element !== id)
-      );
-    }
-    return setSelectedLocations([...selectedLocations, id]);
-  }
 
   function handlePosition(selected, id) {
     if (selected) {
@@ -64,7 +41,6 @@ function FilterModal(props: props) {
   }
 
   function handleClear() {
-    setSelectedLocations([]);
     setSelectedPositions([]);
   }
 
@@ -87,48 +63,27 @@ function FilterModal(props: props) {
           </Flex>
         </ModalHeader>
         <ModalBody>
-          <Box mb="2">
-            <Text>Locations</Text>
-            <ButtonGroup size="sm">
-              {locations.map((item) => {
+          <Text>Positions</Text>
+          <ButtonGroup size="sm">
+            <Wrap>
+              {positions.map((item) => {
                 const isActive = Boolean(
-                  selectedLocations.find((element) => element === item.id)
+                  selectedPositions.find((element) => element === item.name)
                 );
                 return (
                   <Button
-                    id={item.id}
-                    isActive={isActive}
-                    onClick={() => handleLocation(isActive, item.id)}
+                    key={item.id}
+                    isActive={Boolean(
+                      selectedPositions.find((element) => element === item.name)
+                    )}
+                    onClick={() => handlePosition(isActive, item.name)}
                   >
-                    {item.fields.name}
+                    {item.name}
                   </Button>
                 );
               })}
-            </ButtonGroup>
-          </Box>
-          <Box mb="2">
-            <Text>Positions</Text>
-            <ButtonGroup size="sm">
-              <Wrap>
-                {positions.map((item) => {
-                  const isActive = Boolean(
-                    selectedPositions.find((element) => element === item.id)
-                  );
-                  return (
-                    <Button
-                      id={item.id}
-                      isActive={Boolean(
-                        selectedPositions.find((element) => element === item.id)
-                      )}
-                      onClick={() => handlePosition(isActive, item.id)}
-                    >
-                      {item.fields.name}
-                    </Button>
-                  );
-                })}
-              </Wrap>
-            </ButtonGroup>
-          </Box>
+            </Wrap>
+          </ButtonGroup>
         </ModalBody>
         <ModalFooter>
           <Button colorScheme="blue" onClick={onClose} isFullWidth>

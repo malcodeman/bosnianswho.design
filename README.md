@@ -17,6 +17,6 @@ yarn install && yarn dev
 .env.local:
 
 ```
-AIRTABLE_API_KEY=key
-AIRTABLE_BASE=base
+TWITTER_TOKEN=token
+NOTION_TOKEN=token
 ```

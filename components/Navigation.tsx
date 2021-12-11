@@ -5,6 +5,7 @@ import {
   Wrap,
   WrapItem,
   Box,
+  Heading,
 } from "@chakra-ui/layout";
 
 import constants from "../lib/constants";
@@ -15,14 +16,14 @@ function Navigation() {
       <Box mb="1">
         <Link href="/">
           <a>
-            <Text>
+            <Heading fontSize="lg">
               Bosnians{" "}
               <span role="img" aria-label="emoji">
                 🇧🇦
               </span>{" "}
               <br /> Who
               <br /> Design
-            </Text>
+            </Heading>
           </a>
         </Link>
       </Box>

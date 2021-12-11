@@ -1,39 +1,67 @@
+import { map } from "ramda";
+
 import constants from "./constants";
 
-async function listDesigners() {
+import { TwitterDesigner, NotionDesigner, NotionPosition } from "../types";
+
+async function listDesigners(): Promise<NotionDesigner[]> {
   const res = await fetch(
-    `https://api.airtable.com/v0/${constants.AIRTABLE_BASE}/designers`,
+    `${constants.NOTION_API_URL}/databases/${constants.NOTION_DATABASES.DESIGNERS}/query`,
     {
-      headers: { Authorization: `Bearer ${constants.AIRTABLE_API_KEY}` },
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${constants.NOTION_TOKEN}`,
+        "Notion-Version": constants.NOTION_API_VERSION,
+      },
     }
   );
   const json = await res.json();
-
-  return json.records;
+  const data = map((item) => {
+    return {
+      id: item.id,
+      username: item.properties.username.title[0].plain_text,
+      position: map(
+        (item) => item.title[0].plain_text,
+        item.properties.positionText.rollup.array
+      ),
+    };
+  }, json.results);
+  return data;
 }
 
-async function listLocations() {
+async function listTwitterDesigners(
+  usernames: string[]
+): Promise<TwitterDesigner[]> {
   const res = await fetch(
-    `https://api.airtable.com/v0/${constants.AIRTABLE_BASE}/locations`,
+    `${constants.TWITTER_API_URL}/users/by?usernames=${usernames}&user.fields=created_at,location,url,description,verified,profile_image_url`,
     {
-      headers: { Authorization: `Bearer ${constants.AIRTABLE_API_KEY}` },
+      headers: { Authorization: `Bearer ${constants.TWITTER_TOKEN}` },
     }
   );
   const json = await res.json();
-
-  return json.records;
+  return json.data;
 }
 
-async function listPositions() {
+async function listPositions(): Promise<NotionPosition[]> {
   const res = await fetch(
-    `https://api.airtable.com/v0/${constants.AIRTABLE_BASE}/positions`,
+    `${constants.NOTION_API_URL}/databases/${constants.NOTION_DATABASES.POSITIONS}/query`,
     {
-      headers: { Authorization: `Bearer ${constants.AIRTABLE_API_KEY}` },
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${constants.NOTION_TOKEN}`,
+        "Notion-Version": constants.NOTION_API_VERSION,
+      },
     }
   );
   const json = await res.json();
-
-  return json.records;
+  const data = map((item) => {
+    return {
+      id: item.id,
+      name: item.properties.name.title[0].plain_text,
+      count: item.properties.count.rollup.number,
+    };
+  }, json.results);
+  return data;
 }
 
-export { listDesigners, listLocations, listPositions };
+export { listDesigners, listTwitterDesigners, listPositions };

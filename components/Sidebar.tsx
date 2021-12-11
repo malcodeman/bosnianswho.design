@@ -3,24 +3,16 @@ import { Checkbox } from "@chakra-ui/checkbox";
 
 import Navigation from "./Navigation";
 
-function Sidebar(props) {
-  const {
-    locations,
-    selectedLocations,
-    setSelectedLocations,
-    positions,
-    selectedPositions,
-    setSelectedPositions,
-  } = props;
+import { NotionPosition } from "../types";
 
-  function handleLocation(selected, id) {
-    if (selected) {
-      return setSelectedLocations(
-        selectedLocations.filter((element) => element !== id)
-      );
-    }
-    return setSelectedLocations([...selectedLocations, id]);
-  }
+type props = {
+  positions: NotionPosition[];
+  selectedPositions: string[];
+  setSelectedPositions: (positions: string[]) => void;
+};
+
+function Sidebar(props: props) {
+  const { positions, selectedPositions, setSelectedPositions } = props;
 
   function handlePosition(selected, id) {
     if (selected) {
@@ -45,39 +37,20 @@ function Sidebar(props) {
       <Flex display={["none", "none", "flex"]} flexDirection="column">
         <Text mb="2">Filter by</Text>
         <Box mb="2">
-          <Text>Locations</Text>
-          {locations.map((item) => {
-            const isChecked = Boolean(
-              selectedLocations.find((element) => element === item.id)
-            );
-            return (
-              <Flex key={item.id} justifyContent="space-between">
-                <Checkbox
-                  isChecked={isChecked}
-                  onChange={() => handleLocation(isChecked, item.id)}
-                >
-                  {item.fields.name}
-                </Checkbox>
-                <Text opacity="0.6">{item.fields.count}</Text>
-              </Flex>
-            );
-          })}
-        </Box>
-        <Box mb="2">
           <Text>Positions</Text>
           {positions.map((item) => {
             const isChecked = Boolean(
-              selectedPositions.find((element) => element === item.id)
+              selectedPositions.find((element) => element === item.name)
             );
             return (
               <Flex key={item.id} justifyContent="space-between">
                 <Checkbox
                   isChecked={isChecked}
-                  onChange={() => handlePosition(isChecked, item.id)}
+                  onChange={() => handlePosition(isChecked, item.name)}
                 >
-                  {item.fields.name}
+                  {item.name}
                 </Checkbox>
-                <Text opacity="0.6">{item.fields.count}</Text>
+                <Text opacity="0.6">{item.count}</Text>
               </Flex>
             );
           })}

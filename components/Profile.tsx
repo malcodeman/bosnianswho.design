@@ -3,7 +3,7 @@ import { Text, Link as ChakraLink, Flex, Grid } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/image";
 
 type props = {
-  profile: { large: { url: string } };
+  profile: string;
   name: string;
   location: string;
   website: string;
@@ -14,7 +14,15 @@ function Profile(props: props) {
   const { profile, name, location, website, description } = props;
   return (
     <Grid>
-      <Image src={profile.large.url} alt="" loading="lazy" borderRadius="md" />
+      <Image
+        src={profile}
+        alt=""
+        loading="lazy"
+        borderRadius="md"
+        height="100%"
+        width="100%"
+        objectFit="cover"
+      />
       <Text>{name}</Text>
       <Flex>
         <MapPin size={16} />
@@ -30,7 +38,7 @@ function Profile(props: props) {
           <Text>N/A</Text>
         )}
       </Flex>
-      <Text>{description}</Text>
+      <Text opacity="0.6">{description}</Text>
     </Grid>
   );
 }
