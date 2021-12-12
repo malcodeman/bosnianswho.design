@@ -3,7 +3,7 @@ import Head from "next/head";
 import { Grid } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/button";
 import { useDisclosure } from "@chakra-ui/hooks";
-import { map, replace, zipWith } from "ramda";
+import { map, replace, zipWith, filter, includes, any, length } from "ramda";
 import { Filter } from "react-feather";
 
 import { listDesigners, listTwitterDesigners, listPositions } from "../lib/api";
@@ -24,19 +24,18 @@ function Home(props: props) {
   const { designers, positions } = props;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedPositions, setSelectedPositions] = React.useState([]);
-  const filteredDesigners = designers.filter((designer) => {
-    const position = designer.position;
-    const filterByPosition = selectedPositions.length;
-
-    if (filterByPosition) {
-      return selectedPositions.some(
-        (element) => position && position.includes(element)
-      )
-        ? designer
-        : null;
+  const shuffledDesigners = React.useMemo(() => {
+    return utils.fisherYates(designers);
+  }, [designers]);
+  const filteredDesigners = filter((designer) => {
+    if (length(selectedPositions)) {
+      return any(
+        (position) => Boolean(includes(position, designer.position)),
+        selectedPositions
+      );
     }
-    return designer;
-  });
+    return true;
+  }, shuffledDesigners);
 
   return (
     <>
@@ -57,7 +56,7 @@ function Home(props: props) {
           gridTemplateColumns="repeat(auto-fill, minmax(200px, 1fr))"
           gridAutoRows="max-content"
         >
-          {filteredDesigners.map((item) => {
+          {map((item) => {
             const profile = replace("_normal", "", item.profile_image_url);
             return (
               <Profile
@@ -70,7 +69,7 @@ function Home(props: props) {
                 username={item.username}
               />
             );
-          })}
+          }, filteredDesigners)}
         </Grid>
       </Grid>
       <Button
@@ -113,7 +112,7 @@ export async function getStaticProps() {
     notionDesigners
   );
   return {
-    props: { designers: utils.fisherYates(designers), positions },
+    props: { designers, positions },
   };
 }
 
