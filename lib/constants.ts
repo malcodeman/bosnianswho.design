@@ -9,6 +9,7 @@ const NOTION_DATABASES = {
 const NOTION_API_VERSION = "2021-08-16";
 const NOTION_API_URL = "https://api.notion.com/v1";
 const TWITTER_API_URL = "https://api.twitter.com/2";
+const TWITTER_URL = "https://twitter.com";
 
 export default {
   DESIGNER_FORM_LINK,
@@ -19,4 +20,5 @@ export default {
   NOTION_API_VERSION,
   NOTION_API_URL,
   TWITTER_API_URL,
+  TWITTER_URL,
 };

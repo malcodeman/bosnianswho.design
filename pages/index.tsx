@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import { Grid, SimpleGrid } from "@chakra-ui/layout";
+import { Grid } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/button";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { map, replace, zipWith } from "ramda";
@@ -48,12 +48,13 @@ function Home(props: props) {
           selectedPositions={selectedPositions}
           setSelectedPositions={setSelectedPositions}
         />
-        <SimpleGrid
-          minChildWidth="200px"
-          spacing="4"
+        <Grid
+          gridGap="4"
           height={["initial", "initial", "100vh"]}
           overflowY="auto"
           padding="4"
+          gridTemplateColumns="repeat(auto-fill, minmax(200px, 1fr))"
+          gridAutoRows="max-content"
         >
           {filteredDesigners.map((item) => {
             const profile = replace("_normal", "", item.profile_image_url);
@@ -65,10 +66,11 @@ function Home(props: props) {
                 location={item.location}
                 website={item.url}
                 description={item.description}
+                username={item.username}
               />
             );
           })}
-        </SimpleGrid>
+        </Grid>
       </Grid>
       <Button
         onClick={onOpen}
@@ -77,6 +79,7 @@ function Home(props: props) {
         left="50%"
         bottom="64px"
         transform="translateX(-50%)"
+        colorScheme="blue"
         leftIcon={<Filter size={16} />}
       >
         Filter

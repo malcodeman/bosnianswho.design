@@ -2688,6 +2688,11 @@ side-channel@^1.0.4:
     get-intrinsic "^1.0.2"
     object-inspect "^1.9.0"
 
+simple-icons@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/simple-icons/-/simple-icons-6.1.0.tgz#edcef42a6041ccbea63838e0e8622620a91ae917"
+  integrity sha512-8/AFRlrUwu84pS+W3Dj8LW1cbCzHFrGVIE0hQhP7OFFqLlWcJx0WmP6HTo3Zpf3uxbhvYa9dRA/phrTPaG6BkQ==
+
 source-map@0.7.3:
   version "0.7.3"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.7.3.tgz#5302f8169031735226544092e64981f751750383"

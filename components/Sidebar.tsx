@@ -35,9 +35,10 @@ function Sidebar(props: props) {
         <Navigation />
       </Box>
       <Flex display={["none", "none", "flex"]} flexDirection="column">
-        <Text mb="2">Filter by</Text>
+        <Text mb="2" fontWeight="bold">
+          Filter by
+        </Text>
         <Box mb="2">
-          <Text>Positions</Text>
           {positions.map((item) => {
             const isChecked = Boolean(
               selectedPositions.find((element) => element === item.name)
