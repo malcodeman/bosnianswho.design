@@ -6,6 +6,7 @@ import {
   Heading,
   Link as ChakraLink,
   Text,
+  Divider,
 } from "@chakra-ui/layout";
 
 import constants from "../lib/constants";
@@ -23,15 +24,15 @@ function About() {
           <Navigation />
         </Box>
         <Container>
-          <Box as="section">
-            <Heading>About this project</Heading>
+          <Box as="section" mb="4">
+            <Heading mb="2">About this project</Heading>
             <Text>
-              Bosnians Who Design is a directory of accomplished Bosnians in the
-              IT industry.
+              Bosnians Who Design is a directory of accomplished Bosnians and
+              Herzegovinians in the IT industry.
             </Text>
           </Box>
-          <Box as="section" mb="2">
-            <Heading>Source code</Heading>
+          <Box as="section" mb="4">
+            <Heading mb="2">Source code</Heading>
             <Text>
               Feel free to check out the project on{" "}
               <ChakraLink
@@ -44,8 +45,8 @@ function About() {
               .
             </Text>
           </Box>
-          <Box as="section" mb="2">
-            <Heading>Further reading</Heading>
+          <Box as="section" mb="4">
+            <Heading mb="2">Further reading</Heading>
             <Text>
               <ChakraLink
                 href="https://womenwho.design/"
@@ -75,8 +76,8 @@ function About() {
               </ChakraLink>
             </Text>
           </Box>
-          <Box as="section" mb="2">
-            <Heading>Opt out</Heading>
+          <Box as="section">
+            <Heading mb="2">Opt out</Heading>
             <Text>
               If you've been featured in the directory and you'd rather not be,
               please send a DM to{" "}
@@ -94,6 +95,7 @@ function About() {
               and you will be removed.
             </Text>
           </Box>
+          <Divider marginY="4" />
           <Box textAlign="center">
             <Link href="/">
               <a>

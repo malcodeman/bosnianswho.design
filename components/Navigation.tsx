@@ -1,14 +1,5 @@
 import Link from "next/link";
-import {
-  Text,
-  Link as ChakraLink,
-  Wrap,
-  WrapItem,
-  Box,
-  Heading,
-} from "@chakra-ui/layout";
-
-import constants from "../lib/constants";
+import { Text, Wrap, WrapItem, Box, Heading } from "@chakra-ui/layout";
 
 function Navigation() {
   return (
@@ -36,13 +27,11 @@ function Navigation() {
           </Link>
         </WrapItem>
         <WrapItem>
-          <ChakraLink
-            href={constants.DESIGNER_FORM_LINK}
-            color="blue.400"
-            isExternal
-          >
-            Join us
-          </ChakraLink>
+          <Link href="/nominate">
+            <a>
+              <Text>Nominate</Text>
+            </a>
+          </Link>
         </WrapItem>
       </Wrap>
     </Box>
