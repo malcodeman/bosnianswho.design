@@ -24,9 +24,6 @@ function Home(props: props) {
   const { designers, positions } = props;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedPositions, setSelectedPositions] = React.useState([]);
-  const shuffledDesigners = React.useMemo(() => {
-    return utils.fisherYates(designers);
-  }, [designers]);
   const filteredDesigners = filter((designer) => {
     if (length(selectedPositions)) {
       return any(
@@ -35,7 +32,7 @@ function Home(props: props) {
       );
     }
     return true;
-  }, shuffledDesigners);
+  }, designers);
 
   return (
     <>
@@ -112,7 +109,7 @@ export async function getStaticProps() {
     notionDesigners
   );
   return {
-    props: { designers, positions },
+    props: { designers: utils.fisherYates(designers), positions },
   };
 }
 
