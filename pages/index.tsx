@@ -7,6 +7,7 @@ import { map, replace, zipWith } from "ramda";
 import { Filter } from "react-feather";
 
 import { listDesigners, listTwitterDesigners, listPositions } from "../lib/api";
+import utils from "../lib/utils";
 
 import Sidebar from "../components/Sidebar";
 import Profile from "../components/Profile";
@@ -112,7 +113,7 @@ export async function getStaticProps() {
     notionDesigners
   );
   return {
-    props: { designers, positions },
+    props: { designers: utils.fisherYates(designers), positions },
   };
 }
 
