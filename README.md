@@ -2,9 +2,9 @@
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-Bosnians Who Design is a directory of accomplished Bosnians in the IT industry.
+Bosnians Who Design is a directory of accomplished Bosnians and Herzegovinians in the IT industry.
 
-![Screenshot](docs/images/screenshot.jpg)
+![Screenshot](readme/screenshot.png)
 
 ## Getting started
 
