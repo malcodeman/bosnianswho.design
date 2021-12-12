@@ -1,19 +1,20 @@
 import Link from "next/link";
-import { Text, Wrap, WrapItem, Box, Heading } from "@chakra-ui/layout";
+import { Text, Wrap, WrapItem, Box, Heading, Flex } from "@chakra-ui/layout";
+import { Image } from "@chakra-ui/image";
 
 function Navigation() {
   return (
     <Box>
-      <Box mb="1">
+      <Box mb="4">
         <Link href="/">
           <a>
-            <Heading fontSize="lg">
-              Bosnians{" "}
-              <span role="img" aria-label="emoji">
-                🇧🇦
-              </span>{" "}
-              <br /> Who
-              <br /> Design
+            <Heading fontSize="2xl">
+              <Flex alignItems="center">
+                <Text>Bosnians</Text>
+                <Image src="flag.png" height="36px" ml="2" />
+              </Flex>
+              <Text>Who</Text>
+              <Text>Design</Text>
             </Heading>
           </a>
         </Link>

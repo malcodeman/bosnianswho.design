@@ -31,14 +31,14 @@ function Sidebar(props: props) {
       justifyContent="space-between"
       height={["initial", "initial", "100vh"]}
     >
-      <Box mb="1">
+      <Box mb="4">
         <Navigation />
       </Box>
-      <Flex display={["none", "none", "flex"]} flexDirection="column">
-        <Text mb="2" fontWeight="bold">
+      <Flex display={["none", "none", "flex"]} flexDirection="column" mb="4">
+        <Text mb="4" fontWeight="bold">
           Filter by
         </Text>
-        <Box mb="2">
+        <Box>
           {positions.map((item) => {
             const isChecked = Boolean(
               selectedPositions.find((element) => element === item.name)
