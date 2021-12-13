@@ -11,11 +11,11 @@ export default class MyDocument extends Document {
           <meta charSet="utf-8" />
           <meta
             name="og:description"
-            content="Directory of Bosnians in IT industry."
+            content="Directory of Bosnians and Herzegovinians in IT industry."
           />
           <meta
             name="description"
-            content="Directory of Bosnians in IT industry."
+            content="Directory of Bosnians and Herzegovinians in IT industry."
           />
           <meta property="og:image" content="opengraph.png"></meta>
         </Head>
