@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.7.2",
@@ -25,6 +26,8 @@
     "@types/node": "^16.4.13",
     "@types/ramda": "^0.27.60",
     "@types/react": "^17.0.16",
+    "eslint": "^7",
+    "eslint-config-next": "^11.1.2",
     "typescript": "^4.3.5"
   }
 }
