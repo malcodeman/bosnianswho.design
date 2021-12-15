@@ -79,8 +79,8 @@ function About() {
           <Box as="section">
             <Heading mb="2">Opt out</Heading>
             <Text>
-              If you've been featured in the directory and you'd rather not be,
-              please send a DM to{" "}
+              If you&apos;ve been featured in the directory and you&apos;d
+              rather not be, please send a DM to{" "}
               <ChakraLink
                 href="https://twitter.com/bosniansdesign"
                 isExternal

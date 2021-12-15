@@ -11,7 +11,7 @@ const NOTION_API_URL = "https://api.notion.com/v1";
 const TWITTER_API_URL = "https://api.twitter.com/2";
 const TWITTER_URL = "https://twitter.com";
 
-export default {
+const EXPORTS = {
   DESIGNER_FORM_LINK,
   EMAIL,
   TWITTER_TOKEN,
@@ -22,3 +22,5 @@ export default {
   TWITTER_API_URL,
   TWITTER_URL,
 };
+
+export default EXPORTS;

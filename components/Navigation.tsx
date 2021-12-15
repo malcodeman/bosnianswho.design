@@ -11,7 +11,7 @@ function Navigation() {
             <Heading fontSize="2xl">
               <Flex alignItems="center">
                 <Text>Bosnians</Text>
-                <Image src="flag.png" height="36px" ml="2" />
+                <Image src="flag.png" height="36px" ml="2" alt="" />
               </Flex>
               <Text>Who</Text>
               <Text>Design</Text>

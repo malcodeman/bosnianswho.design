@@ -36,7 +36,7 @@ function Nominate() {
               >
                 form
               </ChakraLink>{" "}
-              with their Twitter handle and a few words about why you're
+              with their Twitter handle and a few words about why you&apos;re
               nominating them.
             </Text>
           </Box>

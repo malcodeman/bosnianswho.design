@@ -11,6 +11,8 @@ function fisherYates(originalArray: Designer[]) {
   return array;
 }
 
-export default {
+const EXPORTS = {
   fisherYates,
 };
+
+export default EXPORTS;
