@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { Text, Wrap, WrapItem, Box, Heading, Flex } from "@chakra-ui/layout";
+import { Text, Wrap, WrapItem, Heading, Flex } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/image";
 
 function Navigation() {
   return (
-    <Box>
-      <Box mb="4">
+    <Wrap direction="column">
+      <WrapItem>
         <Link href="/">
           <a>
             <Heading fontSize="2xl">
@@ -18,24 +18,22 @@ function Navigation() {
             </Heading>
           </a>
         </Link>
-      </Box>
-      <Wrap>
-        <WrapItem>
-          <Link href="/about">
-            <a>
-              <Text>About</Text>
-            </a>
-          </Link>
-        </WrapItem>
-        <WrapItem>
-          <Link href="/nominate">
-            <a>
-              <Text>Nominate</Text>
-            </a>
-          </Link>
-        </WrapItem>
-      </Wrap>
-    </Box>
+      </WrapItem>
+      <WrapItem>
+        <Link href="/about">
+          <a>
+            <Text>About</Text>
+          </a>
+        </Link>
+      </WrapItem>
+      <WrapItem>
+        <Link href="/nominate">
+          <a>
+            <Text>Nominate</Text>
+          </a>
+        </Link>
+      </WrapItem>
+    </Wrap>
   );
 }
 
