@@ -10,13 +10,13 @@ import { Button, ButtonGroup, IconButton } from "@chakra-ui/button";
 import { Text, Wrap, Flex } from "@chakra-ui/layout";
 import { X } from "react-feather";
 
-import { NotionPosition } from "../types";
+import { Position } from "../types";
 
 type props = {
   isOpen: boolean;
   onClose: () => void;
   count: number;
-  positions: NotionPosition[];
+  positions: Position[];
   selectedPositions: string[];
   setSelectedPositions: (positions: string[]) => void;
 };
@@ -68,17 +68,19 @@ function FilterModal(props: props) {
             <Wrap>
               {positions.map((item) => {
                 const isActive = Boolean(
-                  selectedPositions.find((element) => element === item.name)
+                  selectedPositions.find((element) => element === item.value)
                 );
                 return (
                   <Button
-                    key={item.id}
+                    key={item.value}
                     isActive={Boolean(
-                      selectedPositions.find((element) => element === item.name)
+                      selectedPositions.find(
+                        (element) => element === item.value
+                      )
                     )}
-                    onClick={() => handlePosition(isActive, item.name)}
+                    onClick={() => handlePosition(isActive, item.value)}
                   >
-                    {item.name}
+                    {item.label}
                   </Button>
                 );
               })}

@@ -3,27 +3,40 @@ import Head from "next/head";
 import { Grid } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/button";
 import { useDisclosure } from "@chakra-ui/hooks";
-import { map, replace, zipWith, filter, includes, any, length } from "ramda";
+import {
+  map,
+  replace,
+  filter,
+  includes,
+  any,
+  length,
+  toLower,
+  split,
+  intersection,
+} from "ramda";
 import { Filter } from "react-feather";
 
-import { listDesigners, listTwitterDesigners, listPositions } from "../lib/api";
+import { listTwitterDesigners, listTwitterFollowings } from "../lib/api";
 import utils from "../lib/utils";
+import constants from "../lib/constants";
 
 import Sidebar from "../components/Sidebar";
 import Profile from "../components/Profile";
 import FilterModal from "../components/FilterModal";
 
-import { Designer, NotionPosition } from "../types";
+import { Designer } from "../types";
 
 type props = {
   designers: Designer[];
-  positions: NotionPosition[];
 };
 
 function Home(props: props) {
-  const { designers, positions } = props;
+  const { designers } = props;
+  const positions = constants.POSITIONS;
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [selectedPositions, setSelectedPositions] = React.useState([]);
+  const [selectedPositions, setSelectedPositions] = React.useState<string[]>(
+    []
+  );
   const filteredDesigners = filter((designer) => {
     if (length(selectedPositions)) {
       return any(
@@ -94,22 +107,22 @@ function Home(props: props) {
 }
 
 export async function getStaticProps() {
-  const notionDesigners = await listDesigners();
-  const usernames = map((item) => item.username, notionDesigners);
+  const followings = await listTwitterFollowings();
+  const usernames = map((item) => item.username, followings);
   const twitterDesigners = await listTwitterDesigners(usernames);
-  const positions = await listPositions();
-  const designers = zipWith(
-    (a, b) => {
-      return {
-        ...a,
-        position: b.position,
-      };
-    },
-    twitterDesigners,
-    notionDesigners
-  );
+  const designers = map((item) => {
+    const description = split(" ", toLower(item.description));
+    const positions = map((item) => item.value, constants.POSITIONS);
+    const inter = intersection(description, positions);
+    return {
+      ...item,
+      position: inter,
+    };
+  }, twitterDesigners);
   return {
-    props: { designers: utils.fisherYates(designers), positions },
+    props: {
+      designers: utils.fisherYates(designers),
+    },
   };
 }
 

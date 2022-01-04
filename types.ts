@@ -9,16 +9,6 @@ type TwitterDesigner = {
   url: string;
   profile_image_url: string;
 };
-type NotionDesigner = {
-  id: string;
-  username: string;
-  position: string[];
-};
-type NotionPosition = {
-  id: string;
-  name: string;
-  count: number;
-};
 type Designer = {
   name: string;
   username: string;
@@ -31,5 +21,9 @@ type Designer = {
   profile_image_url: string;
   position: string[];
 };
+type Position = {
+  value: string;
+  label: string;
+};
 
-export type { TwitterDesigner, NotionDesigner, NotionPosition, Designer };
+export type { TwitterDesigner, Designer, Position };

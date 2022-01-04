@@ -3,10 +3,10 @@ import { Checkbox } from "@chakra-ui/checkbox";
 
 import Navigation from "./Navigation";
 
-import { NotionPosition } from "../types";
+import { Position } from "../types";
 
 type props = {
-  positions: NotionPosition[];
+  positions: Position[];
   selectedPositions: string[];
   setSelectedPositions: (positions: string[]) => void;
 };
@@ -41,17 +41,19 @@ function Sidebar(props: props) {
         <Box>
           {positions.map((item) => {
             const isChecked = Boolean(
-              selectedPositions.find((element) => element === item.name)
+              selectedPositions.find((element) => element === item.value)
             );
             return (
-              <Flex key={item.id} justifyContent="space-between">
+              <Flex key={item.value} justifyContent="space-between">
                 <Checkbox
                   isChecked={isChecked}
-                  onChange={() => handlePosition(isChecked, item.name)}
+                  onChange={() => handlePosition(isChecked, item.value)}
                 >
-                  {item.name}
+                  {item.label}
                 </Checkbox>
-                <Text opacity="0.6">{item.count}</Text>
+                <Text display="none" opacity="0.6">
+                  {0}
+                </Text>
               </Flex>
             );
           })}

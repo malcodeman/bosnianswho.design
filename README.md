@@ -18,5 +18,4 @@ yarn install && yarn dev
 
 ```
 TWITTER_TOKEN=token
-NOTION_TOKEN=token
 ```
