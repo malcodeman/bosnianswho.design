@@ -37,6 +37,21 @@ const POSITIONS = [
     value: ["operations", "hr"],
     label: "Operations",
   },
+  {
+    id: nanoid(),
+    value: ["founder", "co-founder"],
+    label: "Founder",
+  },
+  {
+    id: nanoid(),
+    value: ["speaker"],
+    label: "Speaker",
+  },
+  {
+    id: nanoid(),
+    value: ["photographer"],
+    label: "Graphic Designer",
+  },
 ];
 
 const EXPORTS = {
