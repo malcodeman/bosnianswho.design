@@ -24,24 +24,30 @@ import Sidebar from "../components/Sidebar";
 import Profile from "../components/Profile";
 import FilterModal from "../components/FilterModal";
 
-import { Designer } from "../types";
+import { Designer, Position } from "../types";
 
 type props = {
   designers: Designer[];
+  positions: Position[];
 };
 
 function Home(props: props) {
-  const { designers } = props;
-  const positions = constants.POSITIONS;
+  const { designers, positions } = props;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedPositions, setSelectedPositions] = React.useState<string[]>(
     []
   );
   const filteredDesigners = filter((designer) => {
     if (length(selectedPositions)) {
+      const tags = filter(
+        (item) => includes(item.id, selectedPositions),
+        positions
+      )
+        .map((item) => item.value)
+        .flat();
       return any(
         (position) => Boolean(includes(position, designer.position)),
-        selectedPositions
+        tags
       );
     }
     return true;
@@ -97,7 +103,7 @@ function Home(props: props) {
       <FilterModal
         isOpen={isOpen}
         onClose={onClose}
-        count={filteredDesigners.length}
+        count={length(filteredDesigners)}
         positions={positions}
         selectedPositions={selectedPositions}
         setSelectedPositions={setSelectedPositions}
@@ -112,7 +118,7 @@ export async function getStaticProps() {
   const twitterDesigners = await listTwitterDesigners(usernames);
   const designers = map((item) => {
     const description = split(" ", toLower(item.description));
-    const positions = map((item) => item.value, constants.POSITIONS);
+    const positions = map((item) => item.value, constants.POSITIONS).flat();
     const inter = intersection(description, positions);
     return {
       ...item,
@@ -122,6 +128,7 @@ export async function getStaticProps() {
   return {
     props: {
       designers: utils.fisherYates(designers),
+      positions: constants.POSITIONS,
     },
   };
 }

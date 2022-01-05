@@ -22,7 +22,8 @@ type Designer = {
   position: string[];
 };
 type Position = {
-  value: string;
+  id: string;
+  value: string[];
   label: string;
 };
 

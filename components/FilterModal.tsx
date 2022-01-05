@@ -68,17 +68,15 @@ function FilterModal(props: props) {
             <Wrap>
               {positions.map((item) => {
                 const isActive = Boolean(
-                  selectedPositions.find((element) => element === item.value)
+                  selectedPositions.find((element) => element === item.id)
                 );
                 return (
                   <Button
-                    key={item.value}
+                    key={item.id}
                     isActive={Boolean(
-                      selectedPositions.find(
-                        (element) => element === item.value
-                      )
+                      selectedPositions.find((element) => element === item.id)
                     )}
-                    onClick={() => handlePosition(isActive, item.value)}
+                    onClick={() => handlePosition(isActive, item.id)}
                   >
                     {item.label}
                   </Button>

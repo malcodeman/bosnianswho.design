@@ -41,13 +41,13 @@ function Sidebar(props: props) {
         <Box>
           {positions.map((item) => {
             const isChecked = Boolean(
-              selectedPositions.find((element) => element === item.value)
+              selectedPositions.find((element) => element === item.id)
             );
             return (
-              <Flex key={item.value} justifyContent="space-between">
+              <Flex key={item.id} justifyContent="space-between">
                 <Checkbox
                   isChecked={isChecked}
-                  onChange={() => handlePosition(isChecked, item.value)}
+                  onChange={() => handlePosition(isChecked, item.id)}
                 >
                   {item.label}
                 </Checkbox>
