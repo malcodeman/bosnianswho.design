@@ -13,6 +13,10 @@ import {
   toLower,
   split,
   intersection,
+  inc,
+  splitEvery,
+  equals,
+  concat,
 } from "ramda";
 import { Filter } from "react-feather";
 
@@ -26,7 +30,7 @@ import FilterModal from "../components/FilterModal";
 import Layout from "../components/Layout";
 import Filters from "../components/Filters";
 
-import { Designer, Position } from "../types";
+import { Designer, Position, TwitterDesigner } from "../types";
 
 type props = {
   designers: Designer[];
@@ -116,10 +120,29 @@ function Home(props: props) {
   );
 }
 
+async function getTwitterDesigners(
+  usernames: string[][],
+  index: number,
+  designers = []
+): Promise<TwitterDesigner[]> {
+  if (equals(index, length(usernames))) {
+    return designers;
+  }
+  return getTwitterDesigners(
+    usernames,
+    inc(index),
+    concat(await listTwitterDesigners(usernames[index]), designers)
+  );
+}
+
 export async function getStaticProps() {
   const followings = await listTwitterFollowings();
-  const usernames = map((item) => item.username, followings);
-  const twitterDesigners = await listTwitterDesigners(usernames);
+  // Username split is required because of users lookup limit
+  const usernames = splitEvery(
+    100,
+    map((item) => item.username, followings)
+  );
+  const twitterDesigners = await getTwitterDesigners(usernames, 0, []);
   const designers = map((item) => {
     const description = split(" ", toLower(item.description));
     const positions = map((item) => item.value, constants.POSITIONS).flat();

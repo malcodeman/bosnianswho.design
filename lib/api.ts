@@ -18,7 +18,7 @@ async function listTwitterDesigners(
 
 async function listTwitterFollowings(): Promise<TwitterDesigner[]> {
   const res = await axios.get(
-    `${constants.TWITTER_API_URL}/users/${constants.TWITTER_ID}/following?user.fields=created_at,location,url,description,verified,profile_image_url`,
+    `${constants.TWITTER_API_URL}/users/${constants.TWITTER_ID}/following?user.fields=created_at,location,url,description,verified,profile_image_url&max_results=${constants.MAX_RESULTS}`,
     {
       headers: { Authorization: `Bearer ${constants.TWITTER_TOKEN}` },
     }
