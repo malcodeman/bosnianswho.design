@@ -23,6 +23,8 @@ import constants from "../lib/constants";
 import Sidebar from "../components/Sidebar";
 import Profile from "../components/Profile";
 import FilterModal from "../components/FilterModal";
+import Layout from "../components/Layout";
+import Filters from "../components/Filters";
 
 import { Designer, Position } from "../types";
 
@@ -58,12 +60,14 @@ function Home(props: props) {
       <Head>
         <title>Bosnians Who Design</title>
       </Head>
-      <Grid gridTemplateColumns={["1fr", "1fr", "312px 1fr"]}>
-        <Sidebar
-          positions={positions}
-          selectedPositions={selectedPositions}
-          setSelectedPositions={setSelectedPositions}
-        />
+      <Layout>
+        <Sidebar>
+          <Filters
+            positions={positions}
+            selectedPositions={selectedPositions}
+            setSelectedPositions={setSelectedPositions}
+          />
+        </Sidebar>
         <Grid
           gridGap="4"
           height={["initial", "initial", "100vh"]}
@@ -87,27 +91,27 @@ function Home(props: props) {
             );
           }, filteredDesigners)}
         </Grid>
-      </Grid>
-      <Button
-        onClick={onOpen}
-        display={["initial", "initial", "none"]}
-        position="fixed"
-        left="50%"
-        bottom="64px"
-        transform="translateX(-50%)"
-        colorScheme="blue"
-        leftIcon={<Filter size={16} />}
-      >
-        Filter
-      </Button>
-      <FilterModal
-        isOpen={isOpen}
-        onClose={onClose}
-        count={length(filteredDesigners)}
-        positions={positions}
-        selectedPositions={selectedPositions}
-        setSelectedPositions={setSelectedPositions}
-      />
+        <Button
+          onClick={onOpen}
+          display={["initial", "initial", "none"]}
+          position="fixed"
+          left="50%"
+          bottom="64px"
+          transform="translateX(-50%)"
+          colorScheme="blue"
+          leftIcon={<Filter size={16} />}
+        >
+          Filter
+        </Button>
+        <FilterModal
+          isOpen={isOpen}
+          onClose={onClose}
+          count={length(filteredDesigners)}
+          positions={positions}
+          selectedPositions={selectedPositions}
+          setSelectedPositions={setSelectedPositions}
+        />
+      </Layout>
     </>
   );
 }

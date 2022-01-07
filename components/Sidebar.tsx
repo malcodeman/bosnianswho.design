@@ -1,30 +1,18 @@
-import { Box, Flex, Text } from "@chakra-ui/layout";
-import { Checkbox } from "@chakra-ui/checkbox";
+import { Box, Flex } from "@chakra-ui/layout";
+import { useColorModeValue } from "@chakra-ui/react";
 
 import Navigation from "./Navigation";
 
-import { Position } from "../types";
-
 type props = {
-  positions: Position[];
-  selectedPositions: string[];
-  setSelectedPositions: (positions: string[]) => void;
+  children?: React.ReactNode;
 };
 
 function Sidebar(props: props) {
-  const { positions, selectedPositions, setSelectedPositions } = props;
-
-  function handlePosition(selected, id) {
-    if (selected) {
-      return setSelectedPositions(
-        selectedPositions.filter((element) => element !== id)
-      );
-    }
-    return setSelectedPositions([...selectedPositions, id]);
-  }
-
+  const { children } = props;
+  const backgroundColor = useColorModeValue("#f7f6f3", "#373c3f");
   return (
     <Flex
+      backgroundColor={backgroundColor}
       flexDirection="column"
       padding="4"
       overflowY="auto"
@@ -34,31 +22,9 @@ function Sidebar(props: props) {
       <Box mb="4">
         <Navigation />
       </Box>
-      <Flex display={["none", "none", "flex"]} flexDirection="column" mb="4">
-        <Text mb="4" fontWeight="bold">
-          Filter by
-        </Text>
-        <Box>
-          {positions.map((item) => {
-            const isChecked = Boolean(
-              selectedPositions.find((element) => element === item.id)
-            );
-            return (
-              <Flex key={item.id} justifyContent="space-between">
-                <Checkbox
-                  isChecked={isChecked}
-                  onChange={() => handlePosition(isChecked, item.id)}
-                >
-                  {item.label}
-                </Checkbox>
-                <Text display="none" opacity="0.6">
-                  {0}
-                </Text>
-              </Flex>
-            );
-          })}
-        </Box>
-      </Flex>
+      <Box display={["none", "none", "initial"]} mb="4">
+        {children}
+      </Box>
       <Box />
     </Flex>
   );
