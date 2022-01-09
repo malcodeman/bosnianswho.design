@@ -14,8 +14,12 @@ cd bosnianswho.design
 yarn install && yarn dev
 ```
 
-.env.local:
+.env.development.local:
 
 ```
 TWITTER_TOKEN=token
 ```
+
+## License
+
+[MIT](./LICENSE)
