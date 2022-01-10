@@ -8,7 +8,7 @@ async function listTwitterDesigners(
   usernames: string[]
 ): Promise<TwitterDesigner[]> {
   const res = await axios.get(
-    `${constants.TWITTER_API_URL}/users/by?usernames=${usernames}&user.fields=created_at,location,url,description,verified,profile_image_url`,
+    `${constants.TWITTER_API_URL}/users/by?usernames=${usernames}&user.fields=created_at,location,url,description,verified,profile_image_url,entities`,
     {
       headers: { Authorization: `Bearer ${constants.TWITTER_TOKEN}` },
     }
@@ -18,7 +18,7 @@ async function listTwitterDesigners(
 
 async function listTwitterFollowings(): Promise<TwitterDesigner[]> {
   const res = await axios.get(
-    `${constants.TWITTER_API_URL}/users/${constants.TWITTER_ID}/following?user.fields=created_at,location,url,description,verified,profile_image_url&max_results=${constants.MAX_RESULTS}`,
+    `${constants.TWITTER_API_URL}/users/${constants.TWITTER_ID}/following?user.fields=created_at,location,url,description,verified,profile_image_url,entities&max_results=${constants.MAX_RESULTS}`,
     {
       headers: { Authorization: `Bearer ${constants.TWITTER_TOKEN}` },
     }

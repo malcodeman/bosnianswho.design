@@ -13,7 +13,7 @@ type props = {
   profile: string;
   name: string;
   location: string;
-  website: string;
+  website: { display_url: string; expanded_url: string };
   description: string;
   username: string;
 };
@@ -47,8 +47,13 @@ function Profile(props: props) {
       <Flex alignItems="center" mb="4">
         <Link size={16} />
         {website ? (
-          <ChakraLink href={website} isExternal fontSize="small" ml="1">
-            {website}
+          <ChakraLink
+            href={website.expanded_url}
+            isExternal
+            fontSize="small"
+            ml="1"
+          >
+            {website.display_url}
           </ChakraLink>
         ) : (
           <Text fontSize="small" ml="1">

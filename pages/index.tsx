@@ -88,7 +88,7 @@ function Home(props: props) {
                 profile={profile}
                 name={item.name}
                 location={item.location}
-                website={item.url}
+                website={item.entities?.url?.urls[0]}
                 description={item.description}
                 username={item.username}
               />
