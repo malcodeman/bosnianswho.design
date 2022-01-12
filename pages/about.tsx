@@ -77,7 +77,7 @@ function About() {
                 </ChakraLink>
               </Text>
             </Box>
-            <Box as="section">
+            <Box as="section" mb="4">
               <Heading mb="2">Opt out</Heading>
               <Text>
                 If you&apos;ve been featured in the directory and you&apos;d
@@ -94,6 +94,20 @@ function About() {
                   {constants.EMAIL}
                 </ChakraLink>{" "}
                 and you will be removed.
+              </Text>
+            </Box>
+            <Box as="section">
+              <Heading mb="2">Analytics</Heading>
+              <Text>
+                We use{" "}
+                <ChakraLink
+                  href="https://usefathom.com"
+                  isExternal
+                  color="blue.400"
+                >
+                  Fathom Analytics
+                </ChakraLink>
+                , which is privacy-focused and GDPR compliant.
               </Text>
             </Box>
             <Divider marginY="4" />
