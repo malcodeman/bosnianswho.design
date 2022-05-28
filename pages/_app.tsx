@@ -1,6 +1,7 @@
 import React from "react";
 import { load } from "fathom-client";
 import { ChakraProvider } from "@chakra-ui/react";
+import { appWithTranslation } from "next-i18next";
 import type { AppProps } from "next/app";
 
 const FATHOM_SITE_ID = "TIILVVCO";
@@ -19,4 +20,4 @@ function App({ Component, pageProps }: AppProps) {
   );
 }
 
-export default App;
+export default appWithTranslation(App);

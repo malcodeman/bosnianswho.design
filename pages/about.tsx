@@ -9,6 +9,8 @@ import {
   Divider,
   Center,
 } from "@chakra-ui/layout";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { Trans, useTranslation } from "react-i18next";
 
 import constants from "../lib/constants";
 
@@ -16,47 +18,51 @@ import Layout from "../components/Layout";
 import Sidebar from "../components/Sidebar";
 
 function About() {
+  const { t } = useTranslation("common");
   return (
     <>
       <Head>
-        <title>About | Bosnians Who Design</title>
+        <title>{t("about-bwd")}</title>
       </Head>
       <Layout>
         <Sidebar />
         <Center>
           <Container paddingY="4">
             <Box as="section" mb="4">
-              <Heading mb="2">About this project</Heading>
+              <Heading mb="2">{t("about-this-project")}</Heading>
               <Text>
-                Bosnians Who Design is a directory of accomplished Bosnians and
-                Herzegovinians in the IT industry.
+                {t("bwd-is-a-directory-of-accomplished-bh-in-the-it-industry")}
               </Text>
             </Box>
             <Box as="section" mb="4">
-              <Heading mb="2">Source code</Heading>
+              <Heading mb="2">{t("source-code")}</Heading>
               <Text>
-                Feel free to check out the project on{" "}
-                <ChakraLink
-                  href="https://github.com/malcodeman/bosnianswho.design"
-                  isExternal
-                  color="blue.400"
-                >
-                  GitHub
-                </ChakraLink>
-                .
+                <Trans i18nKey="feel-free-to-check-out-the-project">
+                  Feel free to check out the project on
+                  <ChakraLink
+                    href="https://github.com/malcodeman/bosnianswho.design"
+                    isExternal
+                    color="blue.400"
+                  >
+                    GitHub
+                  </ChakraLink>
+                  .
+                </Trans>
               </Text>
             </Box>
             <Box as="section" mb="4">
-              <Heading mb="2">Further reading</Heading>
+              <Heading mb="2">{t("further-reading")}</Heading>
               <Text>
-                <ChakraLink
-                  href="https://womenwho.design/"
-                  isExternal
-                  color="blue.400"
-                >
-                  Women Who Design
-                </ChakraLink>{" "}
-                (the inspiration for this site) by Jules forrest
+                <Trans i18nKey="the-inspiration-for-this-site">
+                  <ChakraLink
+                    href="https://womenwho.design/"
+                    isExternal
+                    color="blue.400"
+                  >
+                    Women Who Design
+                  </ChakraLink>
+                  (the inspiration for this site) by Jules forrest
+                </Trans>
               </Text>
               <Text>
                 <ChakraLink
@@ -78,43 +84,50 @@ function About() {
               </Text>
             </Box>
             <Box as="section" mb="4">
-              <Heading mb="2">Opt out</Heading>
+              <Heading mb="2">{t("opt-out")}</Heading>
               <Text>
-                If you&apos;ve been featured in the directory and you&apos;d
-                rather not be, please send a DM to{" "}
-                <ChakraLink
-                  href="https://twitter.com/bosniansdesign"
-                  isExternal
-                  color="blue.400"
-                >
-                  @bosniansdesign
-                </ChakraLink>{" "}
-                on Twitter or email at{" "}
-                <ChakraLink href={`mailto:${constants.EMAIL}`} color="blue.400">
-                  {constants.EMAIL}
-                </ChakraLink>{" "}
-                and you will be removed.
+                <Trans i18nKey="if-you-ve-been-featured-in-the-directory">
+                  If you&apos;ve been featured in the directory and you&apos;d
+                  rather not be, please send a DM to
+                  <ChakraLink
+                    href="https://twitter.com/bosniansdesign"
+                    isExternal
+                    color="blue.400"
+                  >
+                    @bosniansdesign
+                  </ChakraLink>
+                  on Twitter or email at
+                  <ChakraLink
+                    href={`mailto:${constants.EMAIL}`}
+                    color="blue.400"
+                  >
+                    {constants.EMAIL}
+                  </ChakraLink>
+                  and you will be removed.
+                </Trans>
               </Text>
             </Box>
             <Box as="section">
-              <Heading mb="2">Analytics</Heading>
+              <Heading mb="2">{t("analytics")}</Heading>
               <Text>
-                We use{" "}
-                <ChakraLink
-                  href="https://usefathom.com"
-                  isExternal
-                  color="blue.400"
-                >
-                  Fathom Analytics
-                </ChakraLink>
-                , which is privacy-focused and GDPR compliant.
+                <Trans i18nKey="we-use-fathom-analytics">
+                  We use
+                  <ChakraLink
+                    href="https://usefathom.com"
+                    isExternal
+                    color="blue.400"
+                  >
+                    Fathom Analytics
+                  </ChakraLink>
+                  , which is privacy-focused and GDPR compliant.
+                </Trans>
               </Text>
             </Box>
             <Divider marginY="4" />
             <Box textAlign="center">
               <Link href="/">
                 <a>
-                  <Text>Back to directory</Text>
+                  <Text>{t("back-to-directory")}</Text>
                 </a>
               </Link>
             </Box>
@@ -124,5 +137,11 @@ function About() {
     </>
   );
 }
+
+export const getStaticProps = async ({ locale }: { locale: string }) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ["common"])),
+  },
+});
 
 export default About;
