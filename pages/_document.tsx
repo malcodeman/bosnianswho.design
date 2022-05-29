@@ -1,3 +1,4 @@
+import { ColorModeScript } from "@chakra-ui/react";
 import Document, { Html, Main, NextScript, Head } from "next/document";
 
 export default class MyDocument extends Document {
@@ -19,6 +20,7 @@ export default class MyDocument extends Document {
           <meta property="og:image" content="opengraph.png"></meta>
         </Head>
         <body>
+          <ColorModeScript initialColorMode="dark" />
           <Main />
           <NextScript />
         </body>

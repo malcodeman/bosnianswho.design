@@ -1,5 +1,4 @@
 import { Box, Flex } from "@chakra-ui/layout";
-import { useColorModeValue } from "@chakra-ui/react";
 
 import Navigation from "./Navigation";
 
@@ -9,10 +8,8 @@ type props = {
 
 function Sidebar(props: props) {
   const { children } = props;
-  const backgroundColor = useColorModeValue("#f7f6f3", "#373c3f");
   return (
     <Flex
-      backgroundColor={backgroundColor}
       flexDirection="column"
       padding="4"
       overflowY="auto"
