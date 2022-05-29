@@ -9,6 +9,8 @@ import {
   Text,
   Center,
 } from "@chakra-ui/layout";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { Trans, useTranslation } from "react-i18next";
 
 import constants from "../lib/constants";
 
@@ -16,36 +18,39 @@ import Layout from "../components/Layout";
 import Sidebar from "../components/Sidebar";
 
 function Nominate() {
+  const { t } = useTranslation("common");
   return (
     <>
       <Head>
-        <title>Nominate | Bosnians Who Design</title>
+        <title>{t("nominate-bwd")}</title>
       </Head>
       <Layout>
         <Sidebar />
         <Center>
           <Container paddingY="4">
             <Box as="section">
-              <Heading mb="2">Nominate</Heading>
+              <Heading mb="2">{t("nominate")}</Heading>
               <Text>
-                If you know a Bosnian or Herzegovinian whose voice is valuable
-                to the design industry, please fill out the{" "}
-                <ChakraLink
-                  href={constants.DESIGNER_FORM_LINK}
-                  color="blue.400"
-                  isExternal
-                >
-                  form
-                </ChakraLink>{" "}
-                with their Twitter handle and a few words about why you&apos;re
-                nominating them.
+                <Trans i18nKey="if-you-know-bh-whose-voice-is-valuable">
+                  If you know a Bosnian or Herzegovinian whose voice is valuable
+                  to the design industry, please fill out the
+                  <ChakraLink
+                    href={constants.DESIGNER_FORM_LINK}
+                    color="blue.400"
+                    isExternal
+                  >
+                    form
+                  </ChakraLink>
+                  with their Twitter handle and a few words about why
+                  you&apos;re nominating them.
+                </Trans>
               </Text>
             </Box>
             <Divider marginY="4" />
             <Box textAlign="center">
               <Link href="/">
                 <a>
-                  <Text>Back to directory</Text>
+                  <Text>{t("back-to-directory")}</Text>
                 </a>
               </Link>
             </Box>
@@ -55,5 +60,11 @@ function Nominate() {
     </>
   );
 }
+
+export const getStaticProps = async ({ locale }: { locale: string }) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ["common"])),
+  },
+});
 
 export default Nominate;
