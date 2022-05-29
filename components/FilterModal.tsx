@@ -86,7 +86,7 @@ function FilterModal(props: props) {
           </ButtonGroup>
         </ModalBody>
         <ModalFooter>
-          <Button colorScheme="blue" onClick={onClose} isFullWidth>
+          <Button colorScheme="blue" onClick={onClose} width="full">
             View {count} {count === 0 || count > 1 ? "Designers" : "Designer"}
           </Button>
         </ModalFooter>

@@ -74,7 +74,7 @@ function Profile(props: props) {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           colorScheme="twitter"
-          isFullWidth
+          width={"full"}
           leftIcon={<SimpleIcon size={16} path={siTwitter.path} />}
         >
           Twitter
