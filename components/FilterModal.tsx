@@ -9,6 +9,8 @@ import {
 import { Button, ButtonGroup, IconButton } from "@chakra-ui/button";
 import { Text, Wrap, Flex } from "@chakra-ui/layout";
 import { X } from "react-feather";
+import { useTranslation } from "react-i18next";
+import { or } from "ramda";
 
 import { Position } from "../types";
 
@@ -30,6 +32,7 @@ function FilterModal(props: props) {
     selectedPositions,
     setSelectedPositions,
   } = props;
+  const { t } = useTranslation("common");
 
   function handlePosition(selected, id) {
     if (selected) {
@@ -56,14 +59,16 @@ function FilterModal(props: props) {
               aria-label="close"
               icon={<X size={16} />}
             />
-            <Text>Filter</Text>
+            <Text>{t("filter")}</Text>
             <Button size="sm" onClick={handleClear}>
-              Clear
+              {t("clear")}
             </Button>
           </Flex>
         </ModalHeader>
         <ModalBody>
-          <Text>Positions</Text>
+          <Text mb="4" fontWeight="bold">
+            {t("positions")}
+          </Text>
           <ButtonGroup size="sm">
             <Wrap>
               {positions.map((item) => {
@@ -78,7 +83,7 @@ function FilterModal(props: props) {
                     )}
                     onClick={() => handlePosition(isActive, item.id)}
                   >
-                    {item.label}
+                    {t(item.translationKey)}
                   </Button>
                 );
               })}
@@ -87,7 +92,9 @@ function FilterModal(props: props) {
         </ModalBody>
         <ModalFooter>
           <Button colorScheme="blue" onClick={onClose} width="full">
-            View {count} {count === 0 || count > 1 ? "Designers" : "Designer"}
+            {or(count === 0, count > 1)
+              ? t("view-designers", { count })
+              : t("view-designer")}
           </Button>
         </ModalFooter>
       </ModalContent>

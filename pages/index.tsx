@@ -20,6 +20,7 @@ import {
 } from "ramda";
 import { Filter } from "react-feather";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "react-i18next";
 
 import { listTwitterDesigners, listTwitterFollowings } from "../lib/api";
 import utils from "../lib/utils";
@@ -59,6 +60,7 @@ function Home(props: props) {
     }
     return true;
   }, designers);
+  const { t } = useTranslation("common");
 
   return (
     <>
@@ -106,7 +108,7 @@ function Home(props: props) {
           colorScheme="blue"
           leftIcon={<Filter size={16} />}
         >
-          Filter
+          {t("filter")}
         </Button>
         <FilterModal
           isOpen={isOpen}

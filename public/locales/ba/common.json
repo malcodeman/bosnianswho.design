@@ -23,5 +23,10 @@
   "operations": "Operacije",
   "founder": "Osnivač",
   "speaker": "Govornik",
-  "graphic-designer": "Grafički dizajner"
+  "graphic-designer": "Grafički dizajner",
+  "filter": "Filtriraj",
+  "clear": "Očisti",
+  "positions": "Pozicije",
+  "view-designer": "Pogledaj dizajnera",
+  "view-designers": "Pogledaj {{count}} dizajnera"
 }

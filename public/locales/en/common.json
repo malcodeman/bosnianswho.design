@@ -23,5 +23,10 @@
   "operations": "Operations",
   "founder": "Founder",
   "speaker": "Speaker",
-  "graphic-designer": "Graphic Designer"
+  "graphic-designer": "Graphic Designer",
+  "filter": "Filter",
+  "clear": "Clear",
+  "positions": "Positions",
+  "view-designer": "View Designer",
+  "view-designers": "View {{count}} Designers"
 }
