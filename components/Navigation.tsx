@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { Text, Wrap, WrapItem, Heading, Flex } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/image";
+import { useTranslation } from "react-i18next";
 
 function Navigation() {
+  const { t } = useTranslation("common");
   return (
     <Wrap direction="column">
       <WrapItem>
@@ -22,19 +24,18 @@ function Navigation() {
       <WrapItem>
         <Link href="/about">
           <a>
-            <Text>About</Text>
+            <Text>{t("about-this-project")}</Text>
           </a>
         </Link>
       </WrapItem>
       <WrapItem>
         <Link href="/nominate">
           <a>
-            <Text>Nominate</Text>
+            <Text>{t("nominate")}</Text>
           </a>
         </Link>
       </WrapItem>
     </Wrap>
   );
 }
-
 export default Navigation;

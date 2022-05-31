@@ -1,5 +1,6 @@
 import { Flex, Text, Box } from "@chakra-ui/layout";
 import { Checkbox } from "@chakra-ui/checkbox";
+import { useTranslation } from "react-i18next";
 
 import { Position } from "../types";
 
@@ -11,6 +12,7 @@ type props = {
 
 function Filters(props: props) {
   const { positions, selectedPositions, setSelectedPositions } = props;
+  const { t } = useTranslation("common");
 
   function handlePosition(selected: boolean, id: string) {
     if (selected) {
@@ -24,7 +26,7 @@ function Filters(props: props) {
   return (
     <Flex flexDirection="column">
       <Text mb="4" fontWeight="bold">
-        Filter by
+        {t("filter-by")}
       </Text>
       <Box>
         {positions.map((item) => {
@@ -37,7 +39,7 @@ function Filters(props: props) {
                 isChecked={isChecked}
                 onChange={() => handlePosition(isChecked, item.id)}
               >
-                {item.label}
+                {t(item.translationKey)}
               </Checkbox>
               <Text display="none" opacity="0.6">
                 {0}

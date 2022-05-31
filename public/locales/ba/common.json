@@ -13,5 +13,15 @@
   "back-to-directory": "Povratak na imenik",
   "nominate-bwd": "Nominiraj | Bosnians Who Design",
   "nominate": "Nominiraj",
-  "if-you-know-bh-whose-voice-is-valuable": "Ako poznajete Bosanaca ili Hercegovca čiji je glas vrijedan za industriju dizajna, ispunite <1>obrazac</1> sa njihovim Twitterom i nekoliko riječi o tome zašto ih nominujete."
+  "if-you-know-bh-whose-voice-is-valuable": "Ako poznajete Bosanaca ili Hercegovca čiji je glas vrijedan za industriju dizajna, ispunite <1>obrazac</1> sa njihovim Twitterom i nekoliko riječi o tome zašto ih nominujete.",
+  "filter-by": "Filtriraj po",
+  "ceo": "CEO",
+  "software-engineer": "Softverski inženjer",
+  "product": "Proizvod",
+  "cto": "CTO",
+  "qa-engineer": "QA inženjer",
+  "operations": "Operacije",
+  "founder": "Osnivač",
+  "speaker": "Govornik",
+  "graphic-designer": "Grafički dizajner"
 }

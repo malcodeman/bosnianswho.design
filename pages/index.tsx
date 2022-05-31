@@ -19,6 +19,7 @@ import {
   concat,
 } from "ramda";
 import { Filter } from "react-feather";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import { listTwitterDesigners, listTwitterFollowings } from "../lib/api";
 import utils from "../lib/utils";
@@ -135,7 +136,7 @@ async function getTwitterDesigners(
   );
 }
 
-export async function getStaticProps() {
+export async function getStaticProps({ locale }) {
   const followings = await listTwitterFollowings();
   // Username split is required because of users lookup limit
   const usernames = splitEvery(
@@ -154,6 +155,7 @@ export async function getStaticProps() {
   }, twitterDesigners);
   return {
     props: {
+      ...(await serverSideTranslations(locale, ["common"])),
       designers: utils.fisherYates(designers),
       positions: constants.POSITIONS,
     },

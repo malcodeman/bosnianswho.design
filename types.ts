@@ -25,6 +25,7 @@ type Position = {
   id: string;
   value: string[];
   label: string;
+  translationKey: string;
 };
 
 export type { TwitterDesigner, Designer, Position };

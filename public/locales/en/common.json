@@ -13,5 +13,15 @@
   "back-to-directory": "Back to directory",
   "nominate-bwd": "Nominate | Bosnians Who Design",
   "nominate": "Nominate",
-  "if-you-know-bh-whose-voice-is-valuable": "If you know a Bosnian or Herzegovinian whose voice is valuable to the design industry, please fill out the <1>form</1> with their Twitter handle and a few words about why you're nominating them."
+  "if-you-know-bh-whose-voice-is-valuable": "If you know a Bosnian or Herzegovinian whose voice is valuable to the design industry, please fill out the <1>form</1> with their Twitter handle and a few words about why you're nominating them.",
+  "filter-by": "Filter by",
+  "ceo": "CEO",
+  "software-engineer": "Software Engineer",
+  "product": "Product",
+  "cto": "CTO",
+  "qa-engineer": "QA Engineer",
+  "operations": "Operations",
+  "founder": "Founder",
+  "speaker": "Speaker",
+  "graphic-designer": "Graphic Designer"
 }

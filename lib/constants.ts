@@ -12,46 +12,55 @@ const POSITIONS = [
     id: nanoid(),
     value: ["ceo"],
     label: "CEO",
+    translationKey: "ceo",
   },
   {
     id: nanoid(),
     value: ["engineer", "programmer", "developer"],
     label: "Software Engineer",
+    translationKey: "software-engineer",
   },
   {
     id: nanoid(),
     value: ["product"],
     label: "Product",
+    translationKey: "product",
   },
   {
     id: nanoid(),
     value: ["cto"],
     label: "CTO",
+    translationKey: "cto",
   },
   {
     id: nanoid(),
     value: ["qa"],
     label: "QA Engineer",
+    translationKey: "qa-engineer",
   },
   {
     id: nanoid(),
     value: ["operations", "hr"],
     label: "Operations",
+    translationKey: "operations",
   },
   {
     id: nanoid(),
     value: ["founder", "co-founder"],
     label: "Founder",
+    translationKey: "founder",
   },
   {
     id: nanoid(),
     value: ["speaker"],
     label: "Speaker",
+    translationKey: "speaker",
   },
   {
     id: nanoid(),
     value: ["photographer"],
     label: "Graphic Designer",
+    translationKey: "graphic-designer",
   },
 ];
 
