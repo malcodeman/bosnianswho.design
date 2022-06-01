@@ -2,15 +2,14 @@ import React from "react";
 import { load } from "fathom-client";
 import { ChakraProvider } from "@chakra-ui/react";
 import { appWithTranslation } from "next-i18next";
+import constants from "../lib/constants";
 import type { AppProps } from "next/app";
-
-const FATHOM_SITE_ID = "TIILVVCO";
 
 function App({ Component, pageProps }: AppProps) {
   React.useEffect(() => {
-    load(FATHOM_SITE_ID, {
-      url: "https://warbler.resumebuilder.dev/script.js",
-      includedDomains: ["bosnianswho.design", "www.bosnianswho.design"],
+    load(constants.FATHOM_ANALYTICS.siteId, {
+      url: constants.FATHOM_ANALYTICS.url,
+      includedDomains: constants.FATHOM_ANALYTICS.includedDomains,
     });
   }, []);
   return (
