@@ -1,8 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import { Grid } from "@chakra-ui/layout";
-import { Button } from "@chakra-ui/button";
-import { useDisclosure } from "@chakra-ui/hooks";
+import { Grid, Button, useDisclosure, Center, Spinner } from "@chakra-ui/react";
 import {
   map,
   replace,
@@ -65,6 +63,7 @@ function Home(props: props) {
     }
     return true;
   }, visibleDesigners);
+  const isLoading = equals(length(filteredDesigners), 0);
   const { t } = useTranslation("common");
 
   React.useEffect(() => {
@@ -84,29 +83,35 @@ function Home(props: props) {
             setSelectedPositions={setSelectedPositions}
           />
         </Sidebar>
-        <Grid
-          gridGap="4"
-          height={["initial", "initial", "100vh"]}
-          overflowY="auto"
-          padding="4"
-          gridTemplateColumns="repeat(auto-fill, minmax(200px, 1fr))"
-          gridAutoRows="max-content"
-        >
-          {map((item) => {
-            const profile = replace("_normal", "", item.profile_image_url);
-            return (
-              <Profile
-                key={item.id}
-                profile={profile}
-                name={item.name}
-                location={item.location}
-                website={item.entities?.url?.urls[0]}
-                description={item.description}
-                username={item.username}
-              />
-            );
-          }, filteredDesigners)}
-        </Grid>
+        {isLoading ? (
+          <Center>
+            <Spinner />
+          </Center>
+        ) : (
+          <Grid
+            gridGap="4"
+            height={["initial", "initial", "100vh"]}
+            overflowY="auto"
+            padding="4"
+            gridTemplateColumns="repeat(auto-fill, minmax(200px, 1fr))"
+            gridAutoRows="max-content"
+          >
+            {map((item) => {
+              const profile = replace("_normal", "", item.profile_image_url);
+              return (
+                <Profile
+                  key={item.id}
+                  profile={profile}
+                  name={item.name}
+                  location={item.location}
+                  website={item.entities?.url?.urls[0]}
+                  description={item.description}
+                  username={item.username}
+                />
+              );
+            }, filteredDesigners)}
+          </Grid>
+        )}
         <Button
           onClick={onOpen}
           display={["initial", "initial", "none"]}
