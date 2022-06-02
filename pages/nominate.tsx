@@ -49,9 +49,7 @@ function Nominate() {
             <Divider marginY="4" />
             <Box textAlign="center">
               <Link href="/">
-                <a>
-                  <Text>{t("back-to-directory")}</Text>
-                </a>
+                <a>{t("back-to-directory")}</a>
               </Link>
             </Box>
           </Container>

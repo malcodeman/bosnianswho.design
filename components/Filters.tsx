@@ -25,7 +25,7 @@ function Filters(props: props) {
 
   return (
     <Flex flexDirection="column">
-      <Text mb="4" fontWeight="bold">
+      <Text mb="2" fontWeight="bold">
         {t("filter-by")}
       </Text>
       <Box>

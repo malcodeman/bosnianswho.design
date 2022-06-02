@@ -107,6 +107,7 @@ function Home(props: props) {
           bottom="64px"
           transform="translateX(-50%)"
           colorScheme="blue"
+          size="lg"
           leftIcon={<Filter size={16} />}
         >
           {t("filter")}
