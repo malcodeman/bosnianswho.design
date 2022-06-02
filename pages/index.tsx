@@ -17,6 +17,7 @@ import {
   splitEvery,
   equals,
   concat,
+  flatten,
 } from "ramda";
 import { Filter } from "react-feather";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -140,7 +141,6 @@ async function getTwitterDesigners(
 
 export async function getStaticProps({ locale }) {
   const followings = await listTwitterFollowings();
-  // Username split is required because of users lookup limit
   const usernames = splitEvery(
     100,
     map((item) => item.username, followings)
@@ -148,7 +148,7 @@ export async function getStaticProps({ locale }) {
   const twitterDesigners = await getTwitterDesigners(usernames, 0, []);
   const designers = map((item) => {
     const description = split(" ", toLower(item.description));
-    const positions = map((item) => item.value, constants.POSITIONS).flat();
+    const positions = flatten(map((item) => item.value, constants.POSITIONS));
     const inter = intersection(description, positions);
     return {
       ...item,

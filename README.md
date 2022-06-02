@@ -22,6 +22,66 @@ yarn dev
 TWITTER_TOKEN=token
 ```
 
+## Index page `getStaticProps` explanation
+
+### 1. Getting followers
+
+```typescript
+const followings = await listTwitterFollowings();
+```
+
+We run [GET /2/users/:id/following](https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/get-users-id-following) endpoint to get a list of users the [@bosniansdesign](https://twitter.com/bosniansdesign) is following.
+
+### 2. Getting usernames
+
+```typescript
+const usernames = splitEvery(
+  100,
+  map((item) => item.username, followings)
+);
+```
+
+We split usernames into slices of 100 items each because of the `GET /2/users/by` endpoint usernames query parameter limit.
+
+### 3. Getting info
+
+```typescript
+async function getTwitterDesigners(
+  usernames: string[][],
+  index: number,
+  designers = []
+): Promise<TwitterDesigner[]> {
+  if (equals(index, length(usernames))) {
+    return designers;
+  }
+  return getTwitterDesigners(
+    usernames,
+    inc(index),
+    concat(await listTwitterDesigners(usernames[index]), designers)
+  );
+}
+
+const twitterDesigners = await getTwitterDesigners(usernames, 0, []);
+```
+
+We run [GET /2/users/by](https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-by) endpoint to get `created_at,location,url,description,verified,profile_image_url,entities` information about users specified by their usernames.
+
+### 4. Getting positions
+
+```typescript
+const designers = map((item) => {
+  const description = split(" ", toLower(item.description));
+  const positions = flatten(map((item) => item.value, constants.POSITIONS));
+  const inter = intersection(description, positions);
+  return {
+    ...item,
+    position: inter,
+  };
+}, twitterDesigners);
+```
+
+We map twitter users to assign appropriate positions based on twitter description.
+
 ## License
 
 [MIT](./LICENSE)
