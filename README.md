@@ -22,6 +22,17 @@ yarn dev
 TWITTER_TOKEN=token
 ```
 
+## Static file serving
+
+Before running
+
+```
+yarn out
+yarn serve
+```
+
+you need to remove `i18n` property from the `next.config.js` file because [internationalized routing does not integrate with next export](https://nextjs.org/docs/advanced-features/i18n-routing#how-does-this-work-with-static-generation).
+
 ## Index page `getStaticProps` explanation
 
 ### 1. Getting followers

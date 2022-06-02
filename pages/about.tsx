@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/layout";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Trans, useTranslation } from "react-i18next";
+import { or } from "ramda";
 
 import constants from "../lib/constants";
 
@@ -138,7 +139,7 @@ function About() {
 
 export const getStaticProps = async ({ locale }: { locale: string }) => ({
   props: {
-    ...(await serverSideTranslations(locale, ["common"])),
+    ...(await serverSideTranslations(or(locale, "en"), ["common"])),
   },
 });
 

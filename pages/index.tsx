@@ -18,6 +18,7 @@ import {
   equals,
   concat,
   flatten,
+  or,
 } from "ramda";
 import { Filter } from "react-feather";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -46,6 +47,9 @@ function Home(props: props) {
   const [selectedPositions, setSelectedPositions] = React.useState<string[]>(
     []
   );
+  const [visibleDesigners, setVisibleDesigners] = React.useState<Designer[]>(
+    []
+  );
   const filteredDesigners = filter((designer) => {
     if (length(selectedPositions)) {
       const tags = filter(
@@ -60,8 +64,12 @@ function Home(props: props) {
       );
     }
     return true;
-  }, designers);
+  }, visibleDesigners);
   const { t } = useTranslation("common");
+
+  React.useEffect(() => {
+    setVisibleDesigners(utils.fisherYates(designers));
+  }, [designers]);
 
   return (
     <>
@@ -158,8 +166,8 @@ export async function getStaticProps({ locale }) {
   }, twitterDesigners);
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["common"])),
-      designers: utils.fisherYates(designers),
+      ...(await serverSideTranslations(or(locale, "en"), ["common"])),
+      designers,
       positions: constants.POSITIONS,
     },
   };
