@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { X } from "react-feather";
 import { useTranslation } from "react-i18next";
-import { or } from "ramda";
+import { or, filter, map, find, equals } from "ramda";
 
 import { Position } from "../types";
 
@@ -38,10 +38,10 @@ function FilterModal(props: props) {
   } = props;
   const { t } = useTranslation("common");
 
-  function handlePosition(selected, id) {
+  function handlePosition(selected: Boolean, id: string) {
     if (selected) {
       return setSelectedPositions(
-        selectedPositions.filter((element) => element !== id)
+        filter((element) => element !== id, selectedPositions)
       );
     }
     return setSelectedPositions([...selectedPositions, id]);
@@ -75,28 +75,31 @@ function FilterModal(props: props) {
           </Text>
           <ButtonGroup size="sm">
             <Wrap>
-              {positions.map((item) => {
+              {map((item) => {
                 const isActive = Boolean(
-                  selectedPositions.find((element) => element === item.id)
+                  find((element) => equals(element, item.id), selectedPositions)
                 );
                 return (
                   <Button
                     key={item.id}
                     isActive={Boolean(
-                      selectedPositions.find((element) => element === item.id)
+                      find(
+                        (element) => equals(element, item.id),
+                        selectedPositions
+                      )
                     )}
                     onClick={() => handlePosition(isActive, item.id)}
                   >
                     {t(item.translationKey)}
                   </Button>
                 );
-              })}
+              }, positions)}
             </Wrap>
           </ButtonGroup>
         </ModalBody>
         <ModalFooter>
           <Button colorScheme="blue" onClick={onClose} width="full">
-            {or(count === 0, count > 1)
+            {or(equals(count, 0), count > 1)
               ? t("view-designers", { count })
               : t("view-designer")}
           </Button>
