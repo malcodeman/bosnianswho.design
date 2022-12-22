@@ -1,5 +1,6 @@
 import { Flex, Text, Box, Checkbox } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
+import { filter, map, find, equals } from "ramda";
 
 import { Position } from "../types";
 
@@ -16,7 +17,7 @@ function Filters(props: props) {
   function handlePosition(selected: boolean, id: string) {
     if (selected) {
       return setSelectedPositions(
-        selectedPositions.filter((element) => element !== id)
+        filter((element) => element !== id, selectedPositions)
       );
     }
     return setSelectedPositions([...selectedPositions, id]);
@@ -28,9 +29,9 @@ function Filters(props: props) {
         {t("filter-by")}
       </Text>
       <Box>
-        {positions.map((item) => {
+        {map((item) => {
           const isChecked = Boolean(
-            selectedPositions.find((element) => element === item.id)
+            find((element) => equals(element, item.id), selectedPositions)
           );
           return (
             <Flex key={item.id} justifyContent="space-between">
@@ -40,12 +41,10 @@ function Filters(props: props) {
               >
                 {t(item.translationKey)}
               </Checkbox>
-              <Text display="none" opacity="0.6">
-                {0}
-              </Text>
+              <Text opacity="0.6">{item.count}</Text>
             </Flex>
           );
-        })}
+        }, positions)}
       </Box>
     </Flex>
   );

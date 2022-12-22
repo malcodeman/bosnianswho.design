@@ -77,7 +77,7 @@ const twitterDesigners = await getTwitterDesigners(usernames, 0, []);
 
 We run [GET /2/users/by](https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-by) endpoint to get `created_at,location,url,description,verified,profile_image_url,entities` information about users specified by their usernames.
 
-### 4. Getting positions
+### 4. Getting designer positions
 
 ```typescript
 const designers = map((item) => {
@@ -92,6 +92,23 @@ const designers = map((item) => {
 ```
 
 We map twitter users to assign appropriate positions based on twitter description.
+
+### 5. Getting filter positions
+
+```typescript
+const positions = map((position) => {
+  return {
+    ...position,
+    count: count(
+      (designer) =>
+        any((item) => includes(item, position.value), designer.position),
+      designers
+    ),
+  };
+}, constants.POSITIONS);
+```
+
+We map initial positions and run count function for every designer position.
 
 ## License
 

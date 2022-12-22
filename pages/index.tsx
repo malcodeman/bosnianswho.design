@@ -17,6 +17,7 @@ import {
   concat,
   flatten,
   or,
+  count,
 } from "ramda";
 import { Filter } from "react-feather";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -169,11 +170,21 @@ export async function getStaticProps({ locale }) {
       position: inter,
     };
   }, twitterDesigners);
+  const positions = map((position) => {
+    return {
+      ...position,
+      count: count(
+        (designer) =>
+          any((item) => includes(item, position.value), designer.position),
+        designers
+      ),
+    };
+  }, constants.POSITIONS);
   return {
     props: {
       ...(await serverSideTranslations(or(locale, "en"), ["common"])),
       designers,
-      positions: constants.POSITIONS,
+      positions,
     },
   };
 }

@@ -20,7 +20,7 @@
     "nanoid": "^3.1.30",
     "next": "^12.1.6",
     "next-i18next": "^11.0.0",
-    "ramda": "^0.27.1",
+    "ramda": "^0.28.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-feather": "^2.0.9",
@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@types/node": "^17.0.36",
-    "@types/ramda": "^0.27.60",
+    "@types/ramda": "^0.28.20",
     "@types/react": "^18.0.9",
     "eslint": "^8.16.0",
     "eslint-config-next": "^12.1.6",
