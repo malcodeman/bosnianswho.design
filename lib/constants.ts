@@ -1,5 +1,7 @@
 import { nanoid } from "nanoid";
+import { equals } from "ramda";
 
+const IS_PROD = equals(process.env.NEXT_PUBLIC_VERCEL_ENV, "production");
 const TWITTER_TOKEN = process.env.TWITTER_TOKEN;
 const DESIGNER_FORM_LINK = "https://airtable.com/shrRmFE90GYwkLv9j";
 const EMAIL = "bosnianswhodesign@gmail.com";
@@ -70,6 +72,7 @@ const POSITIONS = [
 ];
 
 const EXPORTS = {
+  IS_PROD,
   DESIGNER_FORM_LINK,
   EMAIL,
   TWITTER_TOKEN,

@@ -24,10 +24,12 @@ const THEME = extendTheme({
 
 function App({ Component, pageProps }: AppProps) {
   React.useEffect(() => {
-    load(constants.FATHOM_ANALYTICS.siteId, {
-      url: constants.FATHOM_ANALYTICS.url,
-      includedDomains: constants.FATHOM_ANALYTICS.includedDomains,
-    });
+    if (constants.IS_PROD) {
+      load(constants.FATHOM_ANALYTICS.siteId, {
+        url: constants.FATHOM_ANALYTICS.url,
+        includedDomains: constants.FATHOM_ANALYTICS.includedDomains,
+      });
+    }
   }, []);
   return (
     <ChakraProvider theme={THEME}>
