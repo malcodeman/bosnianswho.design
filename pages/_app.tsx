@@ -7,6 +7,10 @@ import type { AppProps } from "next/app";
 import constants from "../lib/constants";
 
 const THEME = extendTheme({
+  fonts: {
+    heading: `'Raleway', sans-serif`,
+    body: `'Open Sans', sans-serif`,
+  },
   styles: {
     global: {
       html: {
