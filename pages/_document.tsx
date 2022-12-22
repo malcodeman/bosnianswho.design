@@ -75,10 +75,6 @@ export default class MyDocument extends Document {
           <meta property="og:site_name" content={TITLE} />
           <meta property="og:url" content={URL} />
           <meta property="og:image" content="opengraph.png" />
-          <meta
-            name="viewport"
-            content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
-          />
         </Head>
         <body>
           <ColorModeScript initialColorMode="dark" />
