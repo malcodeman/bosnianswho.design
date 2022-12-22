@@ -1,5 +1,4 @@
-import { Text, VStack, Heading, Flex } from "@chakra-ui/layout";
-import { Image } from "@chakra-ui/image";
+import { Text, VStack, Heading, Flex, Image } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 
 import NavLink from "./misc/NavLink";

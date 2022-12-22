@@ -1,5 +1,4 @@
-import { Flex, Text, Box } from "@chakra-ui/layout";
-import { Checkbox } from "@chakra-ui/checkbox";
+import { Flex, Text, Box, Checkbox } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 
 import { Position } from "../types";

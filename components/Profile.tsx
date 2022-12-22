@@ -1,7 +1,12 @@
 import { MapPin, Link } from "react-feather";
-import { Text, Link as ChakraLink, Flex, AspectRatio } from "@chakra-ui/layout";
-import { Image } from "@chakra-ui/image";
-import { Button } from "@chakra-ui/button";
+import {
+  Text,
+  Flex,
+  AspectRatio,
+  Image,
+  Button,
+  Link as ChakraLink,
+} from "@chakra-ui/react";
 import { siTwitter } from "simple-icons/icons";
 import { motion } from "framer-motion";
 

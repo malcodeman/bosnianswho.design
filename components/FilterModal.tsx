@@ -5,9 +5,13 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-} from "@chakra-ui/modal";
-import { Button, ButtonGroup, IconButton } from "@chakra-ui/button";
-import { Text, Wrap, Flex } from "@chakra-ui/layout";
+  Button,
+  ButtonGroup,
+  IconButton,
+  Text,
+  Wrap,
+  Flex,
+} from "@chakra-ui/react";
 import { X } from "react-feather";
 import { useTranslation } from "react-i18next";
 import { or } from "ramda";

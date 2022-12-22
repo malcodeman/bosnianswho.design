@@ -2,8 +2,9 @@ import React from "react";
 import { load } from "fathom-client";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { appWithTranslation } from "next-i18next";
-import constants from "../lib/constants";
 import type { AppProps } from "next/app";
+
+import constants from "../lib/constants";
 
 const THEME = extendTheme({
   styles: {
