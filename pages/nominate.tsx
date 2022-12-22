@@ -5,17 +5,15 @@ import {
   Container,
   Divider,
   Heading,
-  Link as ChakraLink,
   Text,
-  Center,
-} from "@chakra-ui/layout";
+  Link as ChakraLink,
+} from "@chakra-ui/react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Trans, useTranslation } from "react-i18next";
 import { or } from "ramda";
 
 import constants from "../lib/constants";
 
-import Layout from "../components/Layout";
 import Sidebar from "../components/Sidebar";
 
 function Nominate() {
@@ -25,37 +23,33 @@ function Nominate() {
       <Head>
         <title>{t("nominate-bwd")}</title>
       </Head>
-      <Layout>
-        <Sidebar />
-        <Center>
-          <Container paddingY="4">
-            <Box as="section">
-              <Heading mb="2">{t("nominate")}</Heading>
-              <Text>
-                <Trans i18nKey="if-you-know-bh-whose-voice-is-valuable">
-                  If you know a Bosnian or Herzegovinian whose voice is valuable
-                  to the design industry, please fill out the
-                  <ChakraLink
-                    href={constants.DESIGNER_FORM_LINK}
-                    color="blue.400"
-                    isExternal
-                  >
-                    form
-                  </ChakraLink>
-                  with their Twitter handle and a few words about why
-                  you&apos;re nominating them.
-                </Trans>
-              </Text>
-            </Box>
-            <Divider marginY="4" />
-            <Box textAlign="center">
-              <Link href="/">
-                <a>{t("back-to-directory")}</a>
-              </Link>
-            </Box>
-          </Container>
-        </Center>
-      </Layout>
+      <Sidebar />
+      <Container paddingY="4">
+        <Box as="section">
+          <Heading mb="2">{t("nominate")}</Heading>
+          <Text>
+            <Trans i18nKey="if-you-know-bh-whose-voice-is-valuable">
+              If you know a Bosnian or Herzegovinian whose voice is valuable to
+              the design industry, please fill out the
+              <ChakraLink
+                href={constants.DESIGNER_FORM_LINK}
+                color="blue.400"
+                isExternal
+              >
+                form
+              </ChakraLink>
+              with their Twitter handle and a few words about why you&apos;re
+              nominating them.
+            </Trans>
+          </Text>
+        </Box>
+        <Divider marginY="4" />
+        <Box textAlign="center">
+          <Link href="/">
+            <a>{t("back-to-directory")}</a>
+          </Link>
+        </Box>
+      </Container>
     </>
   );
 }

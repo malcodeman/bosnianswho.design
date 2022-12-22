@@ -29,7 +29,6 @@ import constants from "../lib/constants";
 import Sidebar from "../components/Sidebar";
 import Profile from "../components/Profile";
 import FilterModal from "../components/FilterModal";
-import Layout from "../components/Layout";
 import Filters from "../components/Filters";
 
 import { Designer, Position, TwitterDesigner } from "../types";
@@ -75,8 +74,8 @@ function Home(props: props) {
       <Head>
         <title>Bosnians Who Design</title>
       </Head>
-      <Layout>
-        <Sidebar>
+      <Grid gridTemplateColumns={["1fr", "1fr", "312px 1fr"]}>
+        <Sidebar height={["initial", "initial", "100vh"]}>
           <Filters
             positions={positions}
             selectedPositions={selectedPositions}
@@ -134,7 +133,7 @@ function Home(props: props) {
           selectedPositions={selectedPositions}
           setSelectedPositions={setSelectedPositions}
         />
-      </Layout>
+      </Grid>
     </>
   );
 }

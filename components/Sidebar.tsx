@@ -1,4 +1,4 @@
-import { Box, Flex } from "@chakra-ui/layout";
+import { Box, Flex, FlexProps } from "@chakra-ui/react";
 
 import utils from "../lib/utils";
 
@@ -6,17 +6,17 @@ import Navigation from "./Navigation";
 
 type props = {
   children?: React.ReactNode;
-};
+} & FlexProps;
 
 function Sidebar(props: props) {
-  const { children } = props;
+  const { children, ...rest } = props;
   return (
     <Flex
+      {...rest}
       flexDirection="column"
       padding="4"
       overflowY="auto"
       justifyContent="space-between"
-      height={["initial", "initial", "100vh"]}
       sx={utils.getScrollbarStyle()}
     >
       <Box mb="4">
