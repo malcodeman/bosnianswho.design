@@ -1,5 +1,7 @@
 import { Box, Flex } from "@chakra-ui/layout";
 
+import utils from "../lib/utils";
+
 import Navigation from "./Navigation";
 
 type props = {
@@ -15,6 +17,7 @@ function Sidebar(props: props) {
       overflowY="auto"
       justifyContent="space-between"
       height={["initial", "initial", "100vh"]}
+      sx={utils.getScrollbarStyle()}
     >
       <Box mb="4">
         <Navigation />

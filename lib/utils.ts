@@ -1,4 +1,5 @@
 import { clone, dec, inc } from "ramda";
+import { SystemStyleObject } from "@chakra-ui/react";
 
 import { Designer } from "../types";
 
@@ -11,8 +12,22 @@ function fisherYates(originalArray: Designer[]) {
   return array;
 }
 
+function getScrollbarStyle(): SystemStyleObject {
+  const sx = {
+    scrollbarWidth: "thin",
+    "&::-webkit-scrollbar": {
+      width: "8px",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "#72757b",
+    },
+  };
+  return sx;
+}
+
 const EXPORTS = {
   fisherYates,
+  getScrollbarStyle,
 };
 
 export default EXPORTS;

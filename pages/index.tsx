@@ -95,6 +95,7 @@ function Home(props: props) {
             padding="4"
             gridTemplateColumns="repeat(auto-fill, minmax(200px, 1fr))"
             gridAutoRows="max-content"
+            sx={utils.getScrollbarStyle()}
           >
             {map((item) => {
               const profile = replace("_normal", "", item.profile_image_url);
