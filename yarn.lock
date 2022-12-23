@@ -2000,6 +2000,18 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.6.tgz#cee20bd55e68a1720bdab363ecf0c821ded4cd45"
   integrity sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==
 
+"@react-hookz/deep-equal@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@react-hookz/deep-equal/-/deep-equal-1.0.4.tgz#68a71f36cbc88724b3ce6f4036183778b6e7f282"
+  integrity sha512-N56fTrAPUDz/R423pag+n6TXWbvlBZDtTehaGFjK0InmN+V2OFWLE/WmORhmn6Ce7dlwH5+tQN1LJFw3ngTJVg==
+
+"@react-hookz/web@^20.0.3":
+  version "20.0.3"
+  resolved "https://registry.yarnpkg.com/@react-hookz/web/-/web-20.0.3.tgz#c764e63979d5dabb5fed06c2852812753b930125"
+  integrity sha512-aYmae0lm7UhlAVea8wMssY7lpFfBlo88Aye3sEPWZe3WlsaT679TF9cy1wGJV9yN6tZrOsrZSI9rh/g+Jzuccw==
+  dependencies:
+    "@react-hookz/deep-equal" "^1.0.4"
+
 "@rollup/plugin-babel@^5.2.0":
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-babel/-/plugin-babel-5.3.1.tgz#04bc0608f4aa4b2e4b1aebf284344d0f68fda283"

@@ -1,3 +1,4 @@
+import React from "react";
 import { MapPin, Link } from "react-feather";
 import {
   Text,
@@ -9,6 +10,7 @@ import {
 import { siTwitter } from "simple-icons/icons";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useIntersectionObserver } from "@react-hookz/web";
 
 import constants from "../lib/constants";
 
@@ -25,10 +27,20 @@ type props = {
 
 function Profile(props: props) {
   const { profile, name, location, website, description, username } = props;
+  const elementRef = React.useRef<HTMLDivElement>(null);
+  const intersection = useIntersectionObserver(elementRef, {
+    threshold: [0, 0.5],
+  });
   return (
-    <Flex flexDirection="column">
+    <Flex ref={elementRef} flexDirection="column">
       <AspectRatio ratio={1} mb="1">
-        <Image src={profile} alt="" width={400} height={400} priority />
+        <Image
+          src={profile}
+          alt=""
+          width={400}
+          height={400}
+          priority={intersection?.isIntersecting ? true : false}
+        />
       </AspectRatio>
       <Text mb="2">{name}</Text>
       <Flex alignItems="center" mb="2">
