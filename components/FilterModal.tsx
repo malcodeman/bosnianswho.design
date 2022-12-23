@@ -13,7 +13,7 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { X } from "react-feather";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { or, filter, map, find, equals } from "ramda";
 
 import { Position } from "../types";

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import NextLink from "next/link";
 import Head from "next/head";
 import {
   Box,
@@ -9,7 +9,7 @@ import {
   Link as ChakraLink,
 } from "@chakra-ui/react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { Trans, useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "next-i18next";
 import { or } from "ramda";
 
 import constants from "../lib/constants";
@@ -45,9 +45,7 @@ function Nominate() {
         </Box>
         <Divider marginY="4" />
         <Box textAlign="center">
-          <Link href="/">
-            <a>{t("back-to-directory")}</a>
-          </Link>
+          <NextLink href="/">{t("back-to-directory")}</NextLink>
         </Box>
       </Container>
     </>

@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import { Link } from "@chakra-ui/react";
 import { equals } from "ramda";
 import NextLink from "next/link";
 
@@ -9,14 +8,16 @@ type props = {
 };
 
 function NavLink(props: props) {
-  const { href, children, ...rest } = props;
+  const { href, children } = props;
   const router = useRouter();
   const isActive = equals(router.asPath, href);
   return (
-    <NextLink href={href} passHref>
-      <Link {...rest} color={isActive ? "blue.400" : "inherit"}>
-        {children}
-      </Link>
+    <NextLink
+      href={href}
+      passHref
+      style={{ color: isActive ? "var(--chakra-colors-blue-400)" : "inherit" }}
+    >
+      {children}
     </NextLink>
   );
 }
