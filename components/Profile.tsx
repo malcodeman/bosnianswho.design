@@ -3,12 +3,12 @@ import {
   Text,
   Flex,
   AspectRatio,
-  Image,
   Button,
   Link as ChakraLink,
 } from "@chakra-ui/react";
 import { siTwitter } from "simple-icons/icons";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 import constants from "../lib/constants";
 
@@ -28,13 +28,7 @@ function Profile(props: props) {
   return (
     <Flex flexDirection="column">
       <AspectRatio ratio={1} mb="1">
-        <Image
-          src={profile}
-          alt=""
-          loading="lazy"
-          borderRadius="md"
-          objectFit="cover"
-        />
+        <Image src={profile} alt="" width={400} height={400} priority />
       </AspectRatio>
       <Text mb="2">{name}</Text>
       <Flex alignItems="center" mb="2">

@@ -1,8 +1,9 @@
-import { Text, VStack, Heading, Flex, Image, Button } from "@chakra-ui/react";
+import { Text, VStack, Heading, Flex, Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { equals } from "ramda";
 import { Globe } from "react-feather";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
+import Image from "next/image";
 
 import NavLink from "./misc/NavLink";
 
@@ -21,8 +22,8 @@ function Navigation() {
       <NavLink href="/">
         <Heading fontSize="2xl">
           <Flex alignItems="center">
-            <Text>Bosnians</Text>
-            <Image src="flag.png" alt="" ml="2" height="36px" width="36px" />
+            <Text mr="2">Bosnians</Text>
+            <Image src="/flag.png" alt="" height={36} width={36} />
           </Flex>
           <Text>Who</Text>
           <Text>Design</Text>
@@ -40,4 +41,5 @@ function Navigation() {
     </VStack>
   );
 }
+
 export default Navigation;

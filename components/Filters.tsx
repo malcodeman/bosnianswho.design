@@ -1,5 +1,5 @@
 import { Flex, Text, Box, Checkbox } from "@chakra-ui/react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { filter, map, find, equals } from "ramda";
 
 import { Position } from "../types";

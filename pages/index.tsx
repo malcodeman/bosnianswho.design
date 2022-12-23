@@ -21,7 +21,7 @@ import {
 } from "ramda";
 import { Filter } from "react-feather";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 import { listTwitterDesigners, listTwitterFollowings } from "../lib/api";
 import utils from "../lib/utils";
