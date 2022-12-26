@@ -26,6 +26,7 @@ import { useTranslation } from "next-i18next";
 import { listTwitterDesigners, listTwitterFollowings } from "../lib/api";
 import utils from "../lib/utils";
 import constants from "../lib/constants";
+import devDesigners from "../lib/devDesigners.json";
 
 import Sidebar from "../components/Sidebar";
 import Profile from "../components/Profile";
@@ -154,13 +155,19 @@ async function getTwitterDesigners(
   );
 }
 
-export async function getStaticProps({ locale }) {
+async function getDesigners() {
   const followings = await listTwitterFollowings();
   const usernames = splitEvery(
     100,
     map((item) => item.username, followings)
   );
-  const twitterDesigners = await getTwitterDesigners(usernames, 0, []);
+  return await getTwitterDesigners(usernames, 0, []);
+}
+
+export async function getStaticProps({ locale }) {
+  const twitterDesigners = constants.IS_PROD
+    ? await getDesigners()
+    : devDesigners;
   const designers = map((item) => {
     const description = split(" ", toLower(item.description));
     const positions = flatten(map((item) => item.value, constants.POSITIONS));

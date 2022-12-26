@@ -1,0 +1,64 @@
+[
+  {
+    "verified": false,
+    "description": "15+ yrs of building products/startups - product engineer - sharing ideas about money, health, tech, and self-improvement - https://t.co/xHfdi31gzL",
+    "created_at": "2011-07-24T18:00:35.000Z",
+    "id": "341632363",
+    "profile_image_url": "https://pbs.twimg.com/profile_images/914016595197997056/WJmwb36K_normal.jpg",
+    "location": "Sarajevo",
+    "entities": {
+      "url": {
+        "urls": [
+          {
+            "start": 0,
+            "end": 23,
+            "url": "https://t.co/1BkEmg1JY3",
+            "expanded_url": "http://www.ministryofprogramming.com/",
+            "display_url": "ministryofprogramming.com"
+          }
+        ]
+      },
+      "description": {
+        "urls": [
+          {
+            "start": 123,
+            "end": 146,
+            "url": "https://t.co/xHfdi31gzL",
+            "expanded_url": "http://techmoneyhealth.substack.com",
+            "display_url": "techmoneyhealth.substack.com"
+          }
+        ]
+      }
+    },
+    "url": "https://t.co/1BkEmg1JY3",
+    "username": "FarisZacina",
+    "name": "Faris Zacina"
+  },
+  {
+    "verified": false,
+    "description": "Father of 2 | ex-developer, investor, co-founder at @MOPSocial a startup studio with 200 employees",
+    "created_at": "2010-01-27T23:17:31.000Z",
+    "id": "109089464",
+    "profile_image_url": "https://pbs.twimg.com/profile_images/1434421477764440067/3HGtosrx_normal.jpg",
+    "location": "Sarajevo, Bosnia & Herzegovina",
+    "entities": {
+      "url": {
+        "urls": [
+          {
+            "start": 0,
+            "end": 23,
+            "url": "https://t.co/HF6MMlyfFY",
+            "expanded_url": "http://www.ministryofprogramming.com",
+            "display_url": "ministryofprogramming.com"
+          }
+        ]
+      },
+      "description": {
+        "mentions": [{ "start": 52, "end": 62, "username": "MOPSocial" }]
+      }
+    },
+    "url": "https://t.co/HF6MMlyfFY",
+    "username": "Reshosis",
+    "name": "Resad Zacina"
+  }
+]
