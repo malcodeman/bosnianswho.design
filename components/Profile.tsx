@@ -40,6 +40,7 @@ function Profile(props: props) {
           width={400}
           height={400}
           priority={intersection?.isIntersecting ? true : false}
+          style={{ borderRadius: "var(--chakra-radii-md)" }}
         />
       </AspectRatio>
       <Text mb="2">{name}</Text>
