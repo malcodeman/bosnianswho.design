@@ -5,6 +5,7 @@ const DESCRIPTION =
   "A directory of inspiring Bosnians and Herzegovinians in the IT industry.";
 const URL = "https://bosnianswho.design";
 const TITLE = "Bosnians Who Design";
+const OPENGRAPH = `${URL}/opengraph.png`;
 
 export default class MyDocument extends Document {
   render() {
@@ -67,14 +68,14 @@ export default class MyDocument extends Document {
           <meta name="twitter:url" content={URL} />
           <meta name="twitter:title" content={TITLE} />
           <meta name="twitter:description" content={DESCRIPTION} />
-          <meta name="twitter:image" content="opengraph.png" />
+          <meta name="twitter:image" content={OPENGRAPH} />
           <meta name="twitter:creator" content="@bosniansdesign" />
           <meta property="og:type" content="website" />
           <meta property="og:title" content={TITLE} />
           <meta property="og:description" content={DESCRIPTION} />
           <meta property="og:site_name" content={TITLE} />
           <meta property="og:url" content={URL} />
-          <meta property="og:image" content="opengraph.png" />
+          <meta property="og:image" content={OPENGRAPH} />
         </Head>
         <body>
           <ColorModeScript initialColorMode="dark" />
