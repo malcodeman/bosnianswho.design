@@ -193,6 +193,7 @@ export async function getStaticProps({ locale }) {
       designers,
       positions,
     },
+    revalidate: 86400,
   };
 }
 
