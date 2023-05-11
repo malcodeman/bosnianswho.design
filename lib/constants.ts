@@ -11,7 +11,6 @@ const TWITTER_ID = "1286358072697524225";
 const MAX_RESULTS = 1000;
 const FATHOM_ANALYTICS = {
   siteId: "TIILVVCO",
-  url: "https://lets-dance-adorable.bosnianswho.design/script.js",
   includedDomains: ["bosnianswho.design", "www.bosnianswho.design"],
 };
 const POSITIONS = [
