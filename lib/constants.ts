@@ -9,10 +9,6 @@ const TWITTER_API_URL = "https://api.twitter.com/2";
 const TWITTER_URL = "https://twitter.com";
 const TWITTER_ID = "1286358072697524225";
 const MAX_RESULTS = 1000;
-const FATHOM_ANALYTICS = {
-  siteId: "TIILVVCO",
-  includedDomains: ["bosnianswho.design", "www.bosnianswho.design"],
-};
 const POSITIONS = [
   {
     id: nanoid(),
@@ -88,7 +84,6 @@ const EXPORTS = {
   TWITTER_URL,
   TWITTER_ID,
   MAX_RESULTS,
-  FATHOM_ANALYTICS,
   POSITIONS,
 };
 
