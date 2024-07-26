@@ -101,22 +101,6 @@ function About() {
             </Trans>
           </Text>
         </Box>
-        <Box as="section">
-          <Heading mb="2">{t("analytics")}</Heading>
-          <Text>
-            <Trans i18nKey="we-use-fathom-analytics">
-              We use
-              <ChakraLink
-                href="https://usefathom.com"
-                isExternal
-                color="blue.400"
-              >
-                Fathom Analytics
-              </ChakraLink>
-              , which is privacy-focused and GDPR compliant.
-            </Trans>
-          </Text>
-        </Box>
         <Divider marginY="4" />
         <Box textAlign="center">
           <NextLink href="/">{t("back-to-directory")}</NextLink>
