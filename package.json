@@ -17,7 +17,7 @@
     "@fontsource/open-sans": "^4.5.13",
     "@fontsource/raleway": "^4.5.11",
     "@react-hookz/web": "^20.0.3",
-    "axios": "^1.7.2",
+    "axios": "^1.7.4",
     "framer-motion": "^11.3.19",
     "i18next": "^23.12.2",
     "nanoid": "^5.0.7",
